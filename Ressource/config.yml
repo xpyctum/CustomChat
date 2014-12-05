@@ -5,3 +5,12 @@ enable-formatter: true
 disablechat: false
 default-player-prefix: Default
 ...
+Kill counter activity: false
+...
+death counter activity: false
+...
+Xp Level activity: false
+---
+
+
+
