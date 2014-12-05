@@ -118,6 +118,15 @@ class CustomChat extends PluginBase implements CommandExecutor {
 		if (! $this->getConfig ()->get ( "default-player-prefix" )) {
 			$this->getConfig ()->set ( "default-player-prefix", "Default" );
 		}
+		if (! $this->getConfig ()->get ( "Kill counter activity" )) {
+			$this->getConfig ()->set ( "Kill counter activity", false );
+		}
+		if (! $this->getConfig ()->get ( "death counter activity" )) {
+			$this->getConfig ()->set ( "death counter activity", false );
+		}
+		if (! $this->getConfig ()->get ( "xp Level activity" )) {
+			$this->getConfig ()->set ( "xp Level activity", false );
+		}
 	
 		$this->getConfig()->save();
 	}
