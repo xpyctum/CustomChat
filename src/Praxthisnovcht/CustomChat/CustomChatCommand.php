@@ -72,7 +72,7 @@ class CustomChatCommand {
 		if ((strtolower ( $command->getName () ) == "disablechat")) {
 			$this->pgin->getConfig ()->set ( "disablechat", true ); // config.yml
 			$this->pgin->getConfig ()->save ();
-			$sender->sendMessage ( "disable chat for all players" );
+			$sender->sendMessage (TextFormat::RED . "disable chat for all players" );
 			$this->log ( "disable chat for all players" );
 			return;
 		}
@@ -80,7 +80,7 @@ class CustomChatCommand {
 		if ((strtolower ( $command->getName () ) == "enablechat")) {
 			$this->pgin->getConfig ()->set ( "disablechat", false ); // config.yml
 			$this->pgin->getConfig ()->save ();
-			$sender->sendMessage ( "enable chat for all players" );
+			$sender->sendMessage (TextFormat::GREEN . "enable chat for all players" );
 			$this->log ( "enable chat for all players" );
 			return;
 		}
@@ -90,13 +90,13 @@ class CustomChatCommand {
 			$playerName = $args [0];
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
-				$sender->sendMessage ( "player " . $playerName . " is not online!" );
+				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
 				exit ();
 			}
 			$prefix = $args [1];
 			$this->pgin->getConfig ()->set ( "default-player-prefix", $prefix );
 			$this->pgin->getConfig ()->save ();
-			$sender->sendMessage ( " all players default prefix set to " . $args [1] );
+			$sender->sendMessage (TextFormat::RED . " all players default prefix set to " . $args [1] );
 			return;
 		}
 		
@@ -105,7 +105,7 @@ class CustomChatCommand {
 			$playerName = $args [0];
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
-				$sender->sendMessage ( "player " . $playerName . " is not online!" );
+				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
 				exit (); // What 
 			}
 			$prefix = $args [1];
@@ -114,7 +114,7 @@ class CustomChatCommand {
 			
 			// $p->setDisplayName($prefix.":".$name);
 			$this->pgin->formatterPlayerDisplayName ( $p );
-			$sender->sendMessage ( $p->getName () . " prefix set to " . $args [1] );
+			$sender->sendMessage (TextFormat::GREEN . $p->getName () . " prefix set to " . $args [1] );
 			return;
 		}
 		
@@ -123,12 +123,12 @@ class CustomChatCommand {
 			$playerName = $args [0];
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
-				$sender->sendMessage ( "player " . $playerName . " is not online!" );
+				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
 				exit (); // What 
 			}
 			$this->pgin->getConfig ()->remove ( $p->getName () . ".prefix" );
 			$this->pgin->getConfig ()->save ();
-			$sender->sendMessage ( $p->getName () . " prefix set to default" );
+			$sender->sendMessage (TextFormat::RED . $p->getName () . " prefix set to default" );
 			return;
 		}
 		
@@ -137,7 +137,7 @@ class CustomChatCommand {
 			$playerName = $args [0];
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
-				$sender->sendMessage ( "player " . $playerName . " is not online!" );
+				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
 				exit (); // What 
 			}
 			$nick = $args [1];
@@ -145,7 +145,7 @@ class CustomChatCommand {
 			$this->pgin->getConfig ()->save ();
 			
 			$this->pgin->formatterPlayerDisplayName ( $p );
-			$sender->sendMessage ( $p->getName () . " nick name set to " . $args [1] );
+			$sender->sendMessage (TextFormat::GREEN . $p->getName () . " nick name set to " . $args [1] );
 			return;
 		}
 		// sets nick for player
@@ -153,7 +153,7 @@ class CustomChatCommand {
 			$playerName = $args [0];
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
-				$sender->sendMessage ( "player " . $playerName . " is not online!" );
+				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
 				exit (); // What 
 			}
 			$nick = $args [1];
@@ -162,7 +162,7 @@ class CustomChatCommand {
 			// save yml
 			
 			$this->pgin->formatterPlayerDisplayName ( $p );
-			$sender->sendMessage ( $p->getName () . " nick removed " );
+			$sender->sendMessage (TextFormat::GREEN . $p->getName () . " nick removed " );
 			return;
 		}
 		
@@ -172,12 +172,12 @@ class CustomChatCommand {
 			// check if the player exist
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
-				$sender->sendMessage ( "player " . $playerName . " is not online!" );
+				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
 				exit (); // What 
 			}
 			$perm = "chatmute";
 			$p->addAttachment ( $this->pgin, $perm, true );
-			$sender->sendMessage ( $p->getName () . " chat muted" );
+			$sender->sendMessage (TextFormat::GREEN . $p->getName () . " chat muted" );
 			// $this->log ( "isPermissionSet " . $p->isPermissionSet ( $perm ) );
 			return;
 		}
@@ -187,7 +187,7 @@ class CustomChatCommand {
 			// check if the player exist
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
-				$sender->sendMessage ( "player " . $playerName . " is not online!" );
+				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
 				exit (); // What 
 			}
 			$perm = "chatmute";
@@ -195,11 +195,11 @@ class CustomChatCommand {
 				if ($pm->getPermission () == $perm) {
 					// $this->log ( "remove attachements " . $pm->getValue () );
 					$p->removeAttachment ( $pm->getAttachment () );
-					$sender->sendMessage ( $p->getName () . " chat unmuted" );
+					$sender->sendMessage (TextFormat::GREEN . $p->getName () . " chat unmuted" );
 					return;
 				}
 			}
-			$sender->sendMessage ( $p->getName () . " already unmuted" );
+			$sender->sendMessage (TextFormat::RED . $p->getName () . " already unmuted" );
 			// $this->log ( "isPermissionSet " . $p->isPermissionSet ( $perm ) );
 			return; // next try again
 			
