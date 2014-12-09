@@ -1,9 +1,8 @@
 CustomChat 
-
 ============
 ---
 
-chat-format' // $format = "{WORLD_NAME}:{$level}[R:{AddKill}|{AddDeath}][{PREFIX}]<{DISPLAY_NAME}> {MESSA'
+chat-format' // $format = "{WORLD_NAME}:{$level}[R:{AddKill}|{AddDeath}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 
 enable-formatter: true
 
@@ -30,6 +29,6 @@ Commands :
   - [X] Nick from player
   - [X] Chat Format Custom
     - [X] Tag {WORLD_NAME}
-    - [ ] Counter death   40%
-    - [ ] Counter murder   0%
+    - [ ] Counter death   40% Building Code
+    - [ ] Counter murder   0% Building Code
     - [X] Tag {[0/10*7]} Level & Xp [Testing]
