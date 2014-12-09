@@ -40,6 +40,9 @@ use pocketmine\network\protocol\Info;
 use pocketmine\network\protocol\LoginPacket;
 use pocketmine\level\generator\Generator;
 
+
+
+use Praxthisnovcht\utils\NextLevel; //Connect NextLevel API
 /**
  * Main Custom....
  *        
@@ -71,6 +74,7 @@ class CustomChat extends PluginBase implements CommandExecutor {
 		$this->getServer()->getPluginManager()->registerEvents(new CustomChatListener($this), $this);
 		$this->log ( TextFormat::GREEN . "- CustomChat - Enabled!" );
 		$this->loadConfig ();
+		$this->getServer()->getPluginManager()->getPlugin("NextLevel"); 
 	}
 	
 	/**
