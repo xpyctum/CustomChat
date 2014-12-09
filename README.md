@@ -3,16 +3,20 @@ CustomChat
 ============
 ---
 
-chat-format'{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
+chat-format' // $format = "{WORLD_NAME}:{$level}[R:{AddKill}|{AddDeath}][{PREFIX}]<{DISPLAY_NAME}> {MESSA'
 
 enable-formatter: true
 
-disablechat: false
-
-
 default-player-prefix: Default
-
 ...
+Kill counter activity: false
+...
+death counter activity: false
+...
+Xp Level activity: false
+...
+
+
 The counters will come to a more stable update
 \ control your server chat.
 Features 
@@ -28,4 +32,4 @@ Commands :
     - [X] Tag {WORLD_NAME}
     - [ ] Counter death   40%
     - [ ] Counter murder   0%
-    - [ ] Tag {[0/10*7]} Level & Xp
+    - [X] Tag {[0/10*7]} Level & Xp [Testing]
