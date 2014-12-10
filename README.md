@@ -31,4 +31,4 @@ Commands :
     - [X] Tag {WORLD_NAME}
     - [ ] Counter death   40% Building Code
     - [ ] Counter murder   0% Building Code
-    - [X] Tag {[0/10*7]} Level & Xp [Testing]
+    - [X] Tag '{$level}' Level & Xp [Testing] Eneblad display when updating [X]
