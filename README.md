@@ -5,13 +5,19 @@ CustomChat
 chat-format' // $format = "{WORLD_NAME}:{$level}[R:{AddKill}|{AddDeath}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 
 enable-formatter: true
+...
 
 default-player-prefix: Default
 ...
+
 Kill counter activity: false
 ...
+
+
 death counter activity: false
 ...
+
+
 Xp Level activity: false
 ...
 
