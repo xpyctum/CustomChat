@@ -1,8 +1,9 @@
 CustomChat 
 ============
 ---
+chat-format' //
 
-chat-format' // $format = "{WORLD_NAME}:{$level}[R:{AddKill}|{AddDeath}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
+$format = "{WORLD_NAME}:{$level}[R:{AddKill}|{AddDeath}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 
 enable-formatter: true
 ...
