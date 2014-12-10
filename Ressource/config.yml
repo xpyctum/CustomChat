@@ -1,6 +1,6 @@
 ---
-chat-format: '{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
-// chat-format: '{WORLD_NAME}:<Xp:1>[R:0|0][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
+chat-format: '{WORLD_NAME}({$level}):[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
+// chat-format: '{WORLD_NAME}({$level}):[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 enable-formatter: true
 disablechat: false
 default-player-prefix: Default
@@ -9,7 +9,7 @@ Kill counter activity: false
 ...
 death counter activity: false
 ...
-Xp Level activity: false
+Xp Level activity: true
 ...
 
 
