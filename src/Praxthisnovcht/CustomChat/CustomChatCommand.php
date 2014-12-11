@@ -212,7 +212,7 @@ class CustomChatCommand {
 			return true;			
 		}		
 		if (count ( $args ) > 1) {
-			$sender->sendMessage (TextFormat::RED . "Usage: /grief [player]"  );
+			$sender->sendMessage (TextFormat::RED . "Usage: /kgrief [player]"  );
 			return true;
 		}
 		if (count ( $args ) === 1) {
