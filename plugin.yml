@@ -1,8 +1,8 @@
 name: CustomChat
-version: 1.1.0
-api: 1.7.1
+version: 1.1.2
+api: 1.9.0
 main: Praxthisnovcht\CustomChat\CustomChat
-author: [Praxthisnovcht,Dax,Supra]
+author: [Praxthisnovcht]
 description: Adds options on the discution salon
 commands:
  setprefix:
@@ -32,4 +32,7 @@ commands:
  enablechat:
   description: "enable chat for all player"
   permission: customchat.plugin.onchat
+  kgrief:
+  description: "Kill players focus"
+  permission: customchat.plugin.kgrief
 
