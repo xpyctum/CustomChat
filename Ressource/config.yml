@@ -1,6 +1,6 @@
 ---
-chat-format: '{WORLD_NAME}({$level}):[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
-// chat-format: '{WORLD_NAME}({$level}):[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
+chat-format: '{WORLD_NAME}({LEVEL}):[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
+// chat-format: '{WORLD_NAME}({LEVEL}):[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 enable-formatter: true
 disablechat: false
 default-player-prefix: Default
