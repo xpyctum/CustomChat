@@ -203,9 +203,11 @@ class CustomChatCommand {
 			$sender->sendMessage (TextFormat::RED . $p->getName () . " already unmuted" );
 			// $this->log ( "isPermissionSet " . $p->isPermissionSet ( $perm ) );
 			return; // next try again
-			
+	
 		}
 	}
+	
+}
 	public function executeCommandKILL(CommandSender $sender, array $args) {	// CustomChat KillGrief v1..1.2			
 		if (!$this->hasCommandAccess($sender)) {
 			$sender->sendMessage (TextFormat::RED . "You don't have permission to use this command" );
