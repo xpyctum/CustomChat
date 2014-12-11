@@ -82,7 +82,9 @@ class CustomChatListener implements Listener {
 		}
 		
 		$format = str_replace ( "{MESSAGE}", $message, $format );
-		$format = str_replace ( "{$Level}", $player->getXP ()->getName (), $format );
+		$format = str_replace ( "{LEVEL}", $player->getXP ()->getName (), $format );
+		// //      $format = str_replace
+		// //      $format = str_replace
 		
 		$level = $player->getLevel ()->getName ();
 		
