@@ -97,7 +97,15 @@ class CustomChat extends PluginBase implements CommandExecutor {
 	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
 		$this->swCommand->onCommand ( $sender, $command, $label, $args );
 	}
-	
+	switch ($command->getName ()) {
+		case "kgrief" :
+	       return $this->CustomChatCommand->executeCommandKILL ( $sender, $args );
+	         break;
+	       default :
+		  return false;
+		}
+	//$this->log ( TextFormat::RED . "- onCommand :" . $command->getName () );
+	//$this->log ( TextFormat::RED . "- onCommand :" . $command->getName () );
 	public function loadConfig() {
 		$this->saveDefaultConfig();
 		$this->fixConfigData ();
