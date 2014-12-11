@@ -88,24 +88,7 @@ class CustomChat extends PluginBase implements CommandExecutor {
 		$this->enabled = false;
 	}
 	
-	/**
-	 * OnCommand
-	 * (non-PHPdoc)
-	 * 
-	 * @see \pocketmine\plugin\PluginBase::onCommand()
-	 */
-	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
-		$this->swCommand->onCommand ( $sender, $command, $label, $args );
-	}
-	switch ($command->getName ()) {
-		case "kgrief" :
-	       return $this->CustomChatCommand->executeCommandKILL ( $sender, $args );
-	         break;
-	       default :
-		  return false;
-		}
-	//$this->log ( TextFormat::RED . "- onCommand :" . $command->getName () );
-	//$this->log ( TextFormat::RED . "- onCommand :" . $command->getName () );
+
 	public function loadConfig() {
 		$this->saveDefaultConfig();
 		$this->fixConfigData ();
@@ -114,6 +97,7 @@ class CustomChat extends PluginBase implements CommandExecutor {
 // 		$this->reloadConfig ();
 // 		$this->loadConfig ();
 // 	}
+
 	public function fixConfigData() {
 		if (! $this->getConfig ()->get ( "chat-format" )) {
 			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
@@ -181,6 +165,23 @@ class CustomChat extends PluginBase implements CommandExecutor {
 		$p->setNameTag($p->getName());
 		return;
 	}
+	/**
+	 * OnCommand
+	 * (non-PHPdoc)
+	 * 
+	 * @see \pocketmine\plugin\command::onCommand()
+	 */
+	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
+		$this->swCommand->onCommand ( $sender, $command, $label, $args );
+	        switch ($command->getName ()) {
+		             case "kgrief" :
+	                     return $this->CustomChatCommand->executeCommandKILL ( $sender, $args );
+	                     break;
+	                        default :
+                      return false;
+         }
+	//$this->log ( TextFormat::RED . "- onCommand :" . $command->getName () );
+	//$this->log ( TextFormat::RED . "- onCommand :" . $command->getName () );
 	
 	/**
 	 * Logging util function
