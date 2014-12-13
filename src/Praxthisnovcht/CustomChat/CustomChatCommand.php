@@ -208,31 +208,31 @@ class CustomChatCommand {
 	}
 	
 }
-	public function executeCommandKILL(CommandSender $sender, array $args) {	// CustomChat KillGrief v1..1.2			
-		if (!$this->hasCommandAccess($sender)) {
-			$sender->sendMessage (TextFormat::RED . "You don't have permission to use this command" );
-			return true;			
-		}		
-		if (count ( $args ) > 1) {
-			$sender->sendMessage (TextFormat::RED . "Usage: /kgrief [player]"  );
-			return true;
-		}
-		if (count ( $args ) === 1) {
-			// check if player online
-			$p = $this->getServerOnlinePlayer ( $sender, $args [0] );
-			// $p = $sender->getServer ()->getPlayer ( $args [0] );
-			if (is_null ( $p )) {
-				$msg = TextFormat::RED . "Cancelled Kill [" . $args [0] . "]. Player is offline.";
-				$sender->sendMessage ( $msg );
-				return true;
-			} else {
-				$p->sendMessage (TextFormat::RED . "You has been terminated!" );
-				$sender->sendMessage (TextFormat::RED . "Target Player [" . $args [0] . "] terminated." );
-				$p->kill ();
-			}
-		}
-		return true;
-	}	             // TODO NEXT VERSION
+//	public function executeCommandKILL(CommandSender $sender, array $args) {	// CustomChat KillGrief v1..1.2			
+//		if (!$this->hasCommandAccess($sender)) {
+//			$sender->sendMessage (TextFormat::RED . "You don't have permission to use this command" );
+//			return true;			
+//		}		
+//		if (count ( $args ) > 1) {
+//			$sender->sendMessage (TextFormat::RED . "Usage: /kgrief [player]"  );
+//			return true;
+//		}
+//		if (count ( $args ) === 1) {
+//			// check if player online
+//			$p = $this->getServerOnlinePlayer ( $sender, $args [0] );
+//			// $p = $sender->getServer ()->getPlayer ( $args [0] );
+//			if (is_null ( $p )) {
+//				$msg = TextFormat::RED . "Cancelled Kill [" . $args [0] . "]. Player is offline.";
+//				$sender->sendMessage ( $msg );
+//				return true;
+//			} else {
+//				$p->sendMessage (TextFormat::RED . "You has been terminated!" );
+//				$sender->sendMessage (TextFormat::RED . "Target Player [" . $args [0] . "] terminated." );
+//				$p->kill ();
+//			}
+//		}
+//		return true;
+//	}	             // TODO NEXT VERSION
 	
 	private function hasCommandAccess(CommandSender $sender) {
 		if ($sender->getName () == "CONSOLE") {
