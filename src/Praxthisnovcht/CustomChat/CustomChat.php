@@ -180,6 +180,7 @@ class CustomChat extends PluginBase implements CommandExecutor {
 	                        default :
                       return false;
          }
+	        }
 	//$this->log ( TextFormat::RED . "- onCommand :" . $command->getName () );
 	//$this->log ( TextFormat::RED . "- onCommand :" . $command->getName () );
 	
