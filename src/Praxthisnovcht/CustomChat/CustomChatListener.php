@@ -13,6 +13,8 @@ use pocketmine\Player;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
+use Praxthisnovcht\\NextLevel; //Connect NextLevel API
+
 /**
  * PraxListener
  *
@@ -71,7 +73,8 @@ class CustomChatListener implements Listener {
 		$format = $this->pgin->getConfig ()->get ( "chat-format" );
 		// $format = "<{PREFIX} {USER_NAME}> {MESSAGE}";		
 		$format = str_replace ( "{WORLD_NAME}", $player->getLevel ()->getName (), $format );
-                $format = str_replace ( "{LEVEL}", $player->getXP ()->getName (), $format );
+                
+                $format = str_replace ( "{LEVEL}", $player->getlevel ()->getName (), $format );
 	//      $format = str_replace
 	//      $format = str_replace
 		
@@ -83,7 +86,6 @@ class CustomChatListener implements Listener {
 		}
 		
 		$format = str_replace ( "{MESSAGE}", $message, $format );
-		$format = str_replace ( "{LEVEL}", $player->getXP ()->getName (), $format );
 		// //      $format = str_replace
 		// //      $format = str_replace
 		
