@@ -115,17 +115,17 @@ class CustomChat extends PluginBase implements CommandExecutor {
 			$this->getConfig ()->set ( "default-player-prefix", "Default" );
 		}
 		
-		if (! $this->getConfig ()->get ( "Kill counter activity" )) {
-			$this->getConfig ()->set ( "Kill counter activity", false );
-		}
-		
-		if (! $this->getConfig ()->get ( "death counter activity" )) {
-			$this->getConfig ()->set ( "death counter activity", false );
-		}
-		
-		if (! $this->getConfig ()->get ( "xp Level activity" )) {
-			$this->getConfig ()->set ( "xp Level activity", false );
-		}
+//		if (! $this->getConfig ()->get ( "Kill counter activity" )) {
+//			$this->getConfig ()->set ( "Kill counter activity", false );
+//		}
+//		
+//		if (! $this->getConfig ()->get ( "death counter activity" )) {
+//			$this->getConfig ()->set ( "death counter activity", false );
+//		}
+//		
+//		if (! $this->getConfig ()->get ( "xp Level activity" )) {
+//			$this->getConfig ()->set ( "xp Level activity", false );
+//		}
 		
 	
 		$this->getConfig()->save();
@@ -171,16 +171,16 @@ class CustomChat extends PluginBase implements CommandExecutor {
 	 * 
 	 * @see \pocketmine\plugin\command::onCommand()
 	 */
-	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
-		$this->swCommand->onCommand ( $sender, $command, $label, $args );
-	        switch ($command->getName ()) {
-		             case "kgrief" :
-	                     return $this->CustomChatCommand->executeCommandKILL ( $sender, $args );
-	                     break;
-	                        default :
-                      return false;
-         }
-	        }
+//	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
+//		$this->swCommand->onCommand ( $sender, $command, $label, $args );
+//	        switch ($command->getName ()) {
+//		             case "kgrief" :
+//	                     return $this->CustomChatCommand->executeCommandKILL ( $sender, $args );
+//	                     break;
+//	                        default :
+  //                    return false;
+    //     }
+//	        }
 	//$this->log ( TextFormat::RED . "- onCommand :" . $command->getName () );
 	//$this->log ( TextFormat::RED . "- onCommand :" . $command->getName () );
 	
