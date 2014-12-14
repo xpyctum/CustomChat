@@ -42,7 +42,7 @@ use pocketmine\level\generator\Generator;
 
 
 
-use Praxthisnovcht\utils\NextLevel; //Connect NextLevel API
+// use Praxthisnovcht\utils\NextLevel; //Connect NextLevel API
 /**
  * Main Custom....
  *        
@@ -88,7 +88,16 @@ class CustomChat extends PluginBase implements CommandExecutor {
 		$this->enabled = false;
 	}
 	
-
+	/**
+	 * OnCommand
+	 * (non-PHPdoc)
+	 * 
+	 * @see \pocketmine\plugin\PluginBase::onCommand()
+	 */
+	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
+		$this->swCommand->onCommand ( $sender, $command, $label, $args );
+	}
+	
 	public function loadConfig() {
 		$this->saveDefaultConfig();
 		$this->fixConfigData ();
@@ -97,7 +106,6 @@ class CustomChat extends PluginBase implements CommandExecutor {
 // 		$this->reloadConfig ();
 // 		$this->loadConfig ();
 // 	}
-
 	public function fixConfigData() {
 		if (! $this->getConfig ()->get ( "chat-format" )) {
 			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
@@ -115,17 +123,17 @@ class CustomChat extends PluginBase implements CommandExecutor {
 			$this->getConfig ()->set ( "default-player-prefix", "Default" );
 		}
 		
-//		if (! $this->getConfig ()->get ( "Kill counter activity" )) {
-//			$this->getConfig ()->set ( "Kill counter activity", false );
-//		}
-//		
-//		if (! $this->getConfig ()->get ( "death counter activity" )) {
-//			$this->getConfig ()->set ( "death counter activity", false );
-//		}
-//		
-//		if (! $this->getConfig ()->get ( "xp Level activity" )) {
-//			$this->getConfig ()->set ( "xp Level activity", false );
-//		}
+		if (! $this->getConfig ()->get ( "Kill counter activity" )) {
+			$this->getConfig ()->set ( "Kill counter activity", false );
+		}
+		
+		if (! $this->getConfig ()->get ( "death counter activity" )) {
+			$this->getConfig ()->set ( "death counter activity", false );
+		}
+		
+		if (! $this->getConfig ()->get ( "xp Level activity" )) {
+			$this->getConfig ()->set ( "xp Level activity", false );
+		}
 		
 	
 		$this->getConfig()->save();
@@ -165,24 +173,6 @@ class CustomChat extends PluginBase implements CommandExecutor {
 		$p->setNameTag($p->getName());
 		return;
 	}
-	/**
-	 * OnCommand
-	 * (non-PHPdoc)
-	 * 
-	 * @see \pocketmine\plugin\command::onCommand()
-	 */
-//	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
-//		$this->swCommand->onCommand ( $sender, $command, $label, $args );
-//	        switch ($command->getName ()) {
-//		             case "kgrief" :
-//	                     return $this->CustomChatCommand->executeCommandKILL ( $sender, $args );
-//	                     break;
-//	                        default :
-  //                    return false;
-    //     }
-//	        }
-	//$this->log ( TextFormat::RED . "- onCommand :" . $command->getName () );
-	//$this->log ( TextFormat::RED . "- onCommand :" . $command->getName () );
 	
 	/**
 	 * Logging util function
