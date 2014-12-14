@@ -68,8 +68,7 @@ class CustomChatCommand {
 	 * @return boolean
 	 */
 	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
-		if (!$this->hasCommandAccess($sender)) {
-			$sender->sendMessage ( TextFormat::RED . "You don't have permission to use this command" );		// disable chat for all players
+		// disable chat for all players
 		if ((strtolower ( $command->getName () ) == "disablechat")) {
 			$this->pgin->getConfig ()->set ( "disablechat", true ); // config.yml
 			$this->pgin->getConfig ()->save ();
@@ -92,7 +91,7 @@ class CustomChatCommand {
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
 				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
-				exit ();
+				return true;
 			}
 			$prefix = $args [1];
 			$this->pgin->getConfig ()->set ( "default-player-prefix", $prefix );
@@ -107,7 +106,7 @@ class CustomChatCommand {
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
 				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
-				exit (); // What 
+				return true;
 			}
 			$prefix = $args [1];
 			$this->pgin->getConfig ()->set ( $p->getName ().".prefix", $prefix );
@@ -125,7 +124,7 @@ class CustomChatCommand {
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
 				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
-				exit (); // What 
+				return true;
 			}
 			$this->pgin->getConfig ()->remove ( $p->getName () . ".prefix" );
 			$this->pgin->getConfig ()->save ();
@@ -139,7 +138,7 @@ class CustomChatCommand {
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
 				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
-				exit (); // What 
+				return true;
 			}
 			$nick = $args [1];
 			$this->pgin->getConfig ()->set ( $p->getName () . ".nick", $nick );
@@ -155,7 +154,7 @@ class CustomChatCommand {
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
 				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
-				exit (); // What 
+				return true; 
 			}
 			$nick = $args [1];
 			$this->pgin->getConfig ()->remove ( $p->getName () . ".nick" );
@@ -174,7 +173,7 @@ class CustomChatCommand {
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
 				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
-				exit (); // What 
+				return true;
 			}
 			$perm = "chatmute";
 			$p->addAttachment ( $this->pgin, $perm, true );
@@ -189,7 +188,7 @@ class CustomChatCommand {
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
 				$sender->sendMessage (TextFormat::RED . "player " . $playerName . " is not online!" );
-				exit (); // What 
+				return true;
 			}
 			$perm = "chatmute";
 			foreach ( $p->getEffectivePermissions () as $pm ) {
@@ -203,36 +202,10 @@ class CustomChatCommand {
 			$sender->sendMessage (TextFormat::RED . $p->getName () . " already unmuted" );
 			// $this->log ( "isPermissionSet " . $p->isPermissionSet ( $perm ) );
 			return; // next try again
-	
+			
 		}
 	}
-	
-}
-//	public function executeCommandKILL(CommandSender $sender, array $args) {	// CustomChat KillGrief v1..1.2			
-//		if (!$this->hasCommandAccess($sender)) {
-//			$sender->sendMessage (TextFormat::RED . "You don't have permission to use this command" );
-//			return true;			
-//		}		
-//		if (count ( $args ) > 1) {
-//			$sender->sendMessage (TextFormat::RED . "Usage: /kgrief [player]"  );
-//			return true;
-//		}
-//		if (count ( $args ) === 1) {
-//			// check if player online
-//			$p = $this->getServerOnlinePlayer ( $sender, $args [0] );
-//			// $p = $sender->getServer ()->getPlayer ( $args [0] );
-//			if (is_null ( $p )) {
-//				$msg = TextFormat::RED . "Cancelled Kill [" . $args [0] . "]. Player is offline.";
-//				$sender->sendMessage ( $msg );
-//				return true;
-//			} else {
-//				$p->sendMessage (TextFormat::RED . "You has been terminated!" );
-//				$sender->sendMessage (TextFormat::RED . "Target Player [" . $args [0] . "] terminated." );
-//				$p->kill ();
-//			}
-//		}
-//		return true;
-//	}	             // TODO NEXT VERSION
+	             // TODO NEXT VERSION
 	
 	private function hasCommandAccess(CommandSender $sender) {
 		if ($sender->getName () == "CONSOLE") {
