@@ -74,6 +74,7 @@ class CustomChat extends PluginBase implements CommandExecutor {
 		$this->getServer()->getPluginManager()->registerEvents(new CustomChatListener($this), $this);
 		$this->log ( TextFormat::GREEN . "- CustomChat - Enabled!" );
 		$this->loadConfig ();
+		// use load plugin NextLevel for Look Tag xp Chat
 		$this->getServer()->getPluginManager()->getPlugin("NextLevel"); 
 	}
 	
@@ -172,6 +173,9 @@ class CustomChat extends PluginBase implements CommandExecutor {
 		//default to regular name
 		$p->setNameTag($p->getName());
 		return;
+		
+		// Check Tag Xp 
+		
 	}
 	
 	/**
