@@ -1,5 +1,7 @@
 CustomChat 
 ============
+
+1.1.0 seems to work in safeguarding config.yml!
 ---
 chat-format' //
 
@@ -36,6 +38,6 @@ Commands :
   - [X] Nick from player
   - [X] Chat Format Custom
     - [X] Tag {WORLD_NAME}
-    - [ ] Counter death   40% Building Code
-    - [ ] Counter murder   0% Building Code
+    - [X] Counter death   40% Building Code Private
+    - [X] Counter murder   0% Building Code Private
     - [X] Tag '{$level}' Level & Xp [Testing] Eneblad display when updating [X]
