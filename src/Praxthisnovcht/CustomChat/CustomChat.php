@@ -108,31 +108,31 @@ class CustomChat extends PluginBase implements CommandExecutor {
 // 		$this->loadConfig ();
 // 	}
 	public function fixConfigData() {
-		if (! $this->getConfig ()->get ( "chat-format" )) {
+		if (! $this->getConfig ()->exists ( "chat-format" )) {
 			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
 		}
 	
-		if (! $this->getConfig ()->get ( "enable-formatter" )) {
+		if (! $this->getConfig ()->exists ( "enable-formatter" )) {
 			$this->getConfig ()->set ( "enable-formatter", true );
 		}
 	
-		if (! $this->getConfig ()->get ( "disablechat" )) {
+		if (! $this->getConfig ()->exists ( "disablechat" )) {
 			$this->getConfig ()->set ( "disablechat", false );
 		}
 	
-		if (! $this->getConfig ()->get ( "default-player-prefix" )) {
+		if (! $this->getConfig ()->exists ( "default-player-prefix" )) {
 			$this->getConfig ()->set ( "default-player-prefix", "Default" );
 		}
 		
-		if (! $this->getConfig ()->get ( "Kill counter activity" )) {
+		if (! $this->getConfig ()->exists ( "Kill counter activity" )) {
 			$this->getConfig ()->set ( "Kill counter activity", false );
 		}
 		
-		if (! $this->getConfig ()->get ( "death counter activity" )) {
+		if (! $this->getConfig ()->exists ( "death counter activity" )) {
 			$this->getConfig ()->set ( "death counter activity", false );
 		}
 		
-		if (! $this->getConfig ()->get ( "xp Level activity" )) {
+		if (! $this->getConfig ()->exists ( "xp Level activity" )) {
 			$this->getConfig ()->set ( "xp Level activity", false );
 		}
 		
@@ -141,7 +141,7 @@ class CustomChat extends PluginBase implements CommandExecutor {
 	}
 // TODO
 // public function fixConfigData() {
-//	if (! $this->getConfig ()->get ( "chat-format" )) {
+//	if (! $this->getConfig ()->exists ( "chat-format" )) {
 // $this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{PREFIX}]({kills})<{DISPLAY_NAME}> {MESSAGE}" ); // Im Learning
 
 	
