@@ -72,11 +72,6 @@ class CustomChatListener implements Listener {
 		// $format = "<{PREFIX} {USER_NAME}> {MESSAGE}";		
 		$format = str_replace ( "{WORLD_NAME}", $player->getLevel ()->getName (), $format );
 		
-		$level = $this->plugin->GetLevel($player);
-		$chatFormat = str_replace("{LEVEL}", $level->getName(), $chatFormat);		
-	//      $format = str_replace 
-	//      $format = str_replace
-		
 		$nick = $this->pgin->getConfig ()->get ( $player->getName () > ".nick");
 		if ($nick!=null) {
 			$format = str_replace ( "{DISPLAY_NAME}", $nick, $format );
