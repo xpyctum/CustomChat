@@ -32,7 +32,4 @@ commands:
  enablechat:
   description: "enable chat for all player"
   permission: customchat.plugin.onchat
-  kgrief:
-  description: "Kill players focus"
-  permission: customchat.plugin.kgrief
 
