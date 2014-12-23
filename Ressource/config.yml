@@ -1,7 +1,8 @@
 ---
-chat-format: '{WORLD_NAME}({LEVEL}):[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
+chat-format: '{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 // chat-format: '{WORLD_NAME}({LEVEL}):[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 enable-formatter: true
+color: §7 // For the next release!
 disablechat: false
 default-player-prefix: Default
 ...
