@@ -106,9 +106,9 @@ class ccListener implements Listener {
 		// FacionsPro Needed 
 		if($factionspro->isInFaction($playerName)) {
 			return $factionspro->getFaction($playerName);
-							$format = str_replace("{Factions_Name}", $this->$factionspro->getPlayerFaction($player->getName()), $format);
+		$format = str_replace("{Factions_Name}", $this->$factionspro->getPlayerFaction($player->getName()), $format);
 			} else {
-				return false;
+				return $format;
 				}
 		
 	}
