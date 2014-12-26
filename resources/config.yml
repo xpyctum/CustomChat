@@ -1,6 +1,8 @@
 ---
 chat-format: '{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 enable-formatter: true
+CustomChat Color: §7
+The color appears on the Format chat and message of Steve *
 disablechat: false
 default-player-prefix: Default
 ...
