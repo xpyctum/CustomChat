@@ -72,9 +72,12 @@ class ccListener implements Listener {
 		// "chat-format: '{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'";		
 		$format = str_replace ( "{WORLD_NAME}", $player->getLevel ()->getName (), $format );
 		// PlayerStats Needed  ")->getDeaths($player);
+		$PlayersStats = $player->getDeaths ()->getName (); // can be very bad
 		$format = str_replace ( "{Kills}", $player->getDeaths(), $format );
-		
-		
+		// FactionsPro Needed $FactionsPro->getFaction
+		$FactionsPro = $player->getFaction ()->getName (); // can be very bad
+		$format = str_replace ( "{Factions}", $player->getFaction(), $format );
+
 		$nick = $this->pgin->getConfig ()->get ( $player->getName () > ".nick");
 		if ($nick!=null) {
 			$format = str_replace ( "{DISPLAY_NAME}", $nick, $format );
