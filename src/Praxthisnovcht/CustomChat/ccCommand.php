@@ -12,12 +12,8 @@ use pocketmine\utils\Config;
 use pocketmine\level\Position;
 use pocketmine\level\Level;
 use pocketmine\level\Explosion;
-use pocketmine\event\block\BlockEvent;
-use pocketmine\event\block\BlockPlaceEvent;
-use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\entity\EntityMoveEvent;
 use pocketmine\event\entity\EntityMotionEvent;
-use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\Listener;
 use pocketmine\math\Vector3 as Vector3;
 use pocketmine\math\Vector2 as Vector2;
@@ -26,34 +22,24 @@ use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerInteractEvent;
-use pocketmine\network\protocol\AddMobPacket;
-use pocketmine\network\protocol\AddEntityPacket;
-use pocketmine\network\protocol\UpdateBlockPacket;
-use pocketmine\block\Block;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\event\server\DataPacketSendEvent;
 use pocketmine\network\protocol\DataPacket;
 use pocketmine\network\protocol\Info;
 use pocketmine\network\protocol\LoginPacket;
-use pocketmine\entity\FallingBlock;
-use pocketmine\command\defaults\TeleportCommand;
-use pocketmine\event\block\SignChangeEvent;
-use pocketmine\level\generator\Flat;
-use pocketmine\level\generator\Normal;
-use pocketmine\level\generator\Generator;
 
 /**
  * Command
  *
  */
-class CustomChatCommand {
+class ccCommand {
 	private $pgin;
 	/**
 	 *
 	 * @param
 	 *        	$pg
 	 */
-	public function __construct(CustomChat $pg) {
+	public function __construct(ccMain $pg) {
 		$this->pgin = $pg;
 	}
 

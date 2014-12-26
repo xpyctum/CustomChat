@@ -40,14 +40,11 @@ use pocketmine\network\protocol\Info;
 use pocketmine\network\protocol\LoginPacket;
 use pocketmine\level\generator\Generator;
 
-
-
-// use Praxthisnovcht\utils\NextLevel; //Connect NextLevel API
 /**
- * Main Custom....
+ * Main
  *        
  */
-class CustomChat extends PluginBase implements CommandExecutor {
+class ccMain extends PluginBase implements CommandExecutor {
 
 	public $pos_display_flag = 0;
 	public $swCommand;
@@ -59,7 +56,7 @@ class CustomChat extends PluginBase implements CommandExecutor {
 	 * @see \pocketmine\plugin\PluginBase::onLoad()
 	 */
 	public function onLoad() {
-		$this->swCommand = new CustomChatCommand ( $this );
+		$this->swCommand = new ccCommand ( $this );
 	}
 	
 	/**
@@ -71,11 +68,9 @@ class CustomChat extends PluginBase implements CommandExecutor {
 	 */
 	public function onEnable() {
 		$this->enabled = true;
-		$this->getServer()->getPluginManager()->registerEvents(new CustomChatListener($this), $this);
+		$this->getServer()->getPluginManager()->registerEvents(new ccListener($this), $this);
 		$this->log ( TextFormat::GREEN . "- CustomChat - Enabled!" );
 		$this->loadConfig ();
-		// use load plugin NextLevel for Look Tag xp Chat
-		$this->getServer()->getPluginManager()->getPlugin("NextLevel"); 
 	}
 	
 	/**
@@ -108,42 +103,24 @@ class CustomChat extends PluginBase implements CommandExecutor {
 // 		$this->loadConfig ();
 // 	}
 	public function fixConfigData() {
-		if (! $this->getConfig ()->exists ( "chat-format" )) {
+		if (! $this->getConfig ()->get ( "chat-format" )) {
 			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
 		}
 	
-		if (! $this->getConfig ()->exists ( "enable-formatter" )) {
+		if (! $this->getConfig ()->get ( "enable-formatter" )) {
 			$this->getConfig ()->set ( "enable-formatter", true );
 		}
 	
-		if (! $this->getConfig ()->exists ( "disablechat" )) {
+		if (! $this->getConfig ()->get ( "disablechat" )) {
 			$this->getConfig ()->set ( "disablechat", false );
 		}
 	
-		if (! $this->getConfig ()->exists ( "default-player-prefix" )) {
+		if (! $this->getConfig ()->get ( "default-player-prefix" )) {
 			$this->getConfig ()->set ( "default-player-prefix", "Default" );
 		}
-		
-		if (! $this->getConfig ()->exists ( "Kill counter activity" )) {
-			$this->getConfig ()->set ( "Kill counter activity", false );
-		}
-		
-		if (! $this->getConfig ()->exists ( "death counter activity" )) {
-			$this->getConfig ()->set ( "death counter activity", false );
-		}
-		
-		if (! $this->getConfig ()->exists ( "xp Level activity" )) {
-			$this->getConfig ()->set ( "xp Level activity", false );
-		}
-		
 	
 		$this->getConfig()->save();
 	}
-// TODO
-// public function fixConfigData() {
-//	if (! $this->getConfig ()->exists ( "chat-format" )) {
-// $this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{PREFIX}]({kills})<{DISPLAY_NAME}> {MESSAGE}" ); // Im Learning
-
 	
 	public function formatterPlayerDisplayName(Player $p) {
 		$prefix=null;
@@ -173,9 +150,6 @@ class CustomChat extends PluginBase implements CommandExecutor {
 		//default to regular name
 		$p->setNameTag($p->getName());
 		return;
-		
-		// Check Tag Xp 
-		
 	}
 	
 	/**

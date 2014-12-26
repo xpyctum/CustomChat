@@ -1,7 +1,7 @@
 name: CustomChat
 version: 1.1.2
-api: 1.9.0
-main: Praxthisnovcht\CustomChat\CustomChat
+api: 1.7.1
+main: Praxthisnovcht\CustomChat\ccMain
 author: [Praxthisnovcht]
 description: Adds options on the discution salon
 commands:
@@ -32,4 +32,3 @@ commands:
  enablechat:
   description: "enable chat for all player"
   permission: customchat.plugin.onchat
-

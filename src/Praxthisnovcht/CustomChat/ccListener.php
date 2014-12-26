@@ -17,9 +17,9 @@ use pocketmine\utils\TextFormat;
  * PraxListener
  *
  */
-class CustomChatListener implements Listener {
+class ccListener implements Listener {
 	public $pgin;
-	public function __construct(CustomChat $pg) {
+	public function __construct(ccMain $pg) {
 		$this->pgin = $pg;
 	}
 	public function onPlayerChat(PlayerChatEvent $event) {
