@@ -1,33 +1,24 @@
 CustomChat 
 ============
+chat-format: '{WORLD_NAME}:[(Factions-Names)][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}' 
 
-1.1.0 seems to work in safeguarding config.yml!
----
-chat-format' //
+< Need CustomChat & FactionsPo & PlayersStats ###
 
-$format = "{WORLD_NAME}:{$level}[R:{AddKill}|{AddDeath}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
+chat-format: '[(Factions-Names)][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}' 
 
-enable-formatter: true
-...
+< Need CustomChat & FactionsPo & PlayersStats 
 
-default-player-prefix: Default
-...
+chat-format: '[{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'	
 
-Kill counter activity: false
-...
+< Need CustomChat & PlayersStats 
 
+chat-format: '[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'	
 
-death counter activity: false
-...
+< Need Only CustomChat
 
+# CustomChat Chat Format Color Next Version 
 
-Xp Level activity: false
-...
-
-
-The counters will come to a more stable update
-\ control your server chat.
-Features 
+# Features 
 Commands :
   - [X] Mute mute player from chat
   - [X] UnMute mute player from chat
@@ -35,9 +26,30 @@ Commands :
   - [X] Unmute all player from chat
   - [X] defPrefix default all from player
   - [X] setPrefix from player
-  - [X] Nick from player
-  - [X] Chat Format Custom
-    - [X] Tag {WORLD_NAME}
-    - [X] Counter death   40% Building Code Private
-    - [X] Counter murder   0% Building Code Private
-    - [X] Tag '{$level}' Level & Xp [Testing] Eneblad display when updating [X]
+  - [ ] Nick from player needs a correction
+  - [X] Chat Format Enable
+    - [X] Tag {WORLD_NAME} Enable Debug
+    - [ ] Counter death  Need another plugin to use this feature
+    - [ ] Counter murder Need another plugin to use this feature
+    - [X] Tag '{$level}' Feature just for ScMCPE Server.
+
+
+
+
+chat-format: '{WORLD_NAME}:[(Factions-Names)][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}' 
+
+< Need CustomChat & FactionsPo & PlayersStats ###
+
+chat-format: '[(Factions-Names)][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}' 
+
+< Need CustomChat & FactionsPo & PlayersStats 
+
+chat-format: '[{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'	
+
+< Need CustomChat & PlayersStats 
+
+chat-format: '[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'	
+
+< Need Only CustomChat
+
+# CustomChat Chat Format Color Next Version 
