@@ -69,18 +69,13 @@ class ccMain extends PluginBase implements CommandExecutor {
 	 */
 	public function onEnable() {
 		$this->enabled = true;
-<<<<<<< HEAD
+
 		
 		$val = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats");
 		$FactionsPro = $this->getServer()->getPluginManager()->getPlugin("FactionsPro");
-=======
-		$this->plugin = $this->getServer()->getPluginManager()->getPlugin("PlayerStats ");
-		$this->getServer()->getPluginManager()->getPlugin("FactionsPro");
->>>>>>> origin/master
 		$this->getServer()->getPluginManager()->registerEvents(new ccListener($this), $this);
 		$this->log ( TextFormat::GREEN . "- CustomChat - Enabled!" );
 		$this->loadConfig ();
-		Server::getInstance()->broadcastMessage($this->plugin->configFile["Color"]."[".$this->plugin->configFile["chat-format"]."]: ".$message);
 	}
 	
 	/**
