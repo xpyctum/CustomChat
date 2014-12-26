@@ -69,8 +69,11 @@ class ccListener implements Listener {
 	
 	public function getFormattedMessage(Player $player, $message) {
 		$format = $this->pgin->getConfig ()->get ( "chat-format" );
-		// $format = "<{PREFIX} {USER_NAME}> {MESSAGE}";		
+		// "chat-format: '{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'";		
 		$format = str_replace ( "{WORLD_NAME}", $player->getLevel ()->getName (), $format );
+		// PlayerStats Needed  ")->getDeaths($player);
+		$format = str_replace ( "{Kills}", $player->getDeaths(), $format );
+		
 		
 		$nick = $this->pgin->getConfig ()->get ( $player->getName () > ".nick");
 		if ($nick!=null) {

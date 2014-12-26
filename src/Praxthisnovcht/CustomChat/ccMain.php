@@ -57,6 +57,7 @@ class ccMain extends PluginBase implements CommandExecutor {
 	 */
 	public function onLoad() {
 		$this->swCommand = new ccCommand ( $this );
+		
 	}
 	
 	/**
@@ -68,6 +69,7 @@ class ccMain extends PluginBase implements CommandExecutor {
 	 */
 	public function onEnable() {
 		$this->enabled = true;
+		$this->plugin = $this->getServer()->getPluginManager()->getPlugin("PlayerStats ");
 		$this->getServer()->getPluginManager()->registerEvents(new ccListener($this), $this);
 		$this->log ( TextFormat::GREEN . "- CustomChat - Enabled!" );
 		$this->loadConfig ();
@@ -104,7 +106,7 @@ class ccMain extends PluginBase implements CommandExecutor {
 // 	}
 	public function fixConfigData() {
 		if (! $this->getConfig ()->get ( "chat-format" )) {
-			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
+			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}" );
 		}
 	
 		if (! $this->getConfig ()->get ( "enable-formatter" )) {
