@@ -72,6 +72,8 @@ class ccListener implements Listener {
 		// "chat-format: '{WORLD_NAME}:[{Factions-Names}][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'";		
 		$format = str_replace ( "{WORLD_NAME}", $player->getLevel ()->getName (), $format );
 		
+
+				
 		// PlayerStats Needed  ")->getDeaths($player);
 		//$format = str_replace ( "{Kills}" .....	
 		

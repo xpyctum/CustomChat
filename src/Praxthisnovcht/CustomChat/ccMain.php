@@ -74,7 +74,6 @@ class ccMain extends PluginBase implements CommandExecutor {
 		$this->getServer()->getPluginManager()->registerEvents(new ccListener($this), $this);
 		$this->log ( TextFormat::GREEN . "- CustomChat - Enabled!" );
 		$this->loadConfig ();
-		Server::getInstance()->broadcastMessage($this->plugin->configFile["Color"]."[".$this->plugin->configFile["chat-format"]."]: ".$message);
 	}
 	
 	/**
