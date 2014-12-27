@@ -14,14 +14,17 @@ use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
 /**
- * PraxListener Version 1.1.7 add FactionsPro Plugin
+ * PraxListener
  *
  */
 class ccListener implements Listener {
 	public $pgin;
+	private $factionspro;
 	public function __construct(ccMain $pg) {
 		$this->pgin = $pg;
+		$this->factionspro = $this->pgin->getServer()->getPluginManager()->getPlugin("FactionsPro");
 	}
+
 	public function onPlayerChat(PlayerChatEvent $event) {
 		$allowChat = $this->pgin->getConfig ()->get ( "disablechat" );
 		// $this->log ( "allowChat ".$allowChat);
@@ -29,7 +32,6 @@ class ccListener implements Listener {
 			$event->setCancelled ( true );
 			return;
 		}
-		
 		if (! $allowChat || $allowChat == null) {
 			$player = $event->getPlayer ();
 			
@@ -69,15 +71,18 @@ class ccListener implements Listener {
 	
 	public function getFormattedMessage(Player $player, $message) {
 		$format = $this->pgin->getConfig ()->get ( "chat-format" );
-		// "chat-format: '{WORLD_NAME}:[{Factions-Names}][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'";		
+		// "chat-format: '{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'";		
 		$format = str_replace ( "{WORLD_NAME}", $player->getLevel ()->getName (), $format );
-		
-
-				
 		// PlayerStats Needed  ")->getDeaths($player);
-		//$format = str_replace ( "{Kills}" .....	
-		
-		$nick = $this->pgin->getConfig ()->get ( $player->getName () > ".nick");
+		// FactionsPro Needed $FactionsPro->getFaction
+		if($this->factionspro == true && $this->factionspro->isInFaction($player->getName())) {
+			$getUserFaction = $this->factionspro->getPlayerFaction($player->getName()); // can be very bad
+			$format = str_replace ( "{FACTION}", $getUserFaction, $format );
+		}else{
+			$nofac = $this->pgin->getConfig ()->get ( "if-player-has-no-faction");
+			$format = str_replace ( "{FACTION}", $nofac, $format );
+		}
+			$nick = $this->pgin->getConfig ()->get ( $player->getName () > ".nick");
 		if ($nick!=null) {
 			$format = str_replace ( "{DISPLAY_NAME}", $nick, $format );
 		} else {
@@ -101,16 +106,6 @@ class ccListener implements Listener {
 		}
 		$format = str_replace ( "{PREFIX}", $prefix, $format );
 		return $format;
-		
-		
-		// FacionsPro Needed 
-		if($factionspro->isInFaction($playerName)) {
-			return $factionspro->getFaction($playerName);
-		$format = str_replace("{Factions_Name}", $this->$factionspro->getPlayerFaction($player->getName()), $format);
-			} else {
-				return $format;
-				}
-		
 	}
 	private function log($msg) {
 		$this->pgin->getLogger ()->info ( $msg );
