@@ -1,4 +1,4 @@
-CustomChat 
+CustomChat v_1.2.0 ...
 ============
 chat-format: '{WORLD_NAME}:[(Factions-Names)][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}' 
 

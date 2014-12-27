@@ -41,7 +41,7 @@ use pocketmine\network\protocol\LoginPacket;
 use pocketmine\level\generator\Generator;
 
 /**
- * Main Version 1.1.5 add Color Plugin
+ * Main Version 1.1.7 add FactionsPro Plugin
  *        
  */
 class ccMain extends PluginBase implements CommandExecutor {
@@ -68,15 +68,9 @@ class ccMain extends PluginBase implements CommandExecutor {
 	 * @see \pocketmine\plugin\PluginBase::onEnable()
 	 */
 	public function onEnable() {
-		$this->enabled = true;
-<<<<<<< HEAD
-		
+		$this->enabled = true;		
 		$val = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats");
 		$FactionsPro = $this->getServer()->getPluginManager()->getPlugin("FactionsPro");
-=======
-		$this->plugin = $this->getServer()->getPluginManager()->getPlugin("PlayerStats ");
-		$this->getServer()->getPluginManager()->getPlugin("FactionsPro");
->>>>>>> origin/master
 		$this->getServer()->getPluginManager()->registerEvents(new ccListener($this), $this);
 		$this->log ( TextFormat::GREEN . "- CustomChat - Enabled!" );
 		$this->loadConfig ();
@@ -114,7 +108,7 @@ class ccMain extends PluginBase implements CommandExecutor {
 // 	}
 	public function fixConfigData() {
 		if (! $this->getConfig ()->get ( "chat-format" )) {
-			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[(Factions_Names)][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}" );
+			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{Factions_Names}][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}" );
 		}
 	
 		if (! $this->getConfig ()->get ( "enable-formatter" )) {

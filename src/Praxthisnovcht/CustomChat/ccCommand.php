@@ -29,7 +29,7 @@ use pocketmine\network\protocol\Info;
 use pocketmine\network\protocol\LoginPacket;
 
 /**
- * Command Version 1.1.5 add Color Plugin
+ * Command Version 1.1.7 add FactionsPro Plugin
  *
  */
 class ccCommand {

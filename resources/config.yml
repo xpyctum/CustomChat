@@ -1,8 +1,17 @@
+#####################################################################################################################################
+# chat-format: '{WORLD_NAME}:[(Factions-Names)][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}' < Need CustomChat & FactionsPo & PlayersStats ###
+######################################################################################################################################
+# chat-format: '[(Factions-Names)][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}' < Need CustomChat & FactionsPo & PlayersStats ###
+#######################################################################################################################
+# chat-format: '[{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'	< Need CustomChat & PlayersStats ###
+###########################################################################################
+# chat-format: '[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'	< Need Only CustomChat ##
+#############################################################################
+#CustomChat Chat Format Color Next Version ###
+##########################################
 ---
 chat-format: '{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 enable-formatter: true
-CustomChat Color: §7
-# The color appears on the Format chat and message of Steve 
 disablechat: false
 default-player-prefix: Default
 ...

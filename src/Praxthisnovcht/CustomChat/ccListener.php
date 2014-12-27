@@ -14,7 +14,7 @@ use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
 /**
- * PraxListener Version 1.1.5 add Color Plugin
+ * PraxListener Version 1.1.7 add FactionsPro Plugin
  *
  */
 class ccListener implements Listener {
@@ -69,24 +69,12 @@ class ccListener implements Listener {
 	
 	public function getFormattedMessage(Player $player, $message) {
 		$format = $this->pgin->getConfig ()->get ( "chat-format" );
-		// "chat-format: '{WORLD_NAME}:[(Factions-Names)][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'";		
+		// "chat-format: '{WORLD_NAME}:[{Factions-Names}][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'";		
 		$format = str_replace ( "{WORLD_NAME}", $player->getLevel ()->getName (), $format );
+		
 		// PlayerStats Needed  ")->getDeaths($player);
-<<<<<<< HEAD
-		//$format = str_replace ( "{Kills}" .....
+		//$format = str_replace ( "{Kills}" .....	
 		
-		// FacionsPro Needed 
-		//$format = str_replace ( "{Factions_Names}"" ....
-		
-		
-=======
-		$PlayersStats = $player->getDeaths ()->getName (); // can be very bad
-		$format = str_replace ( "{Kills}", $player->getDeaths(), $format );
-		// FactionsPro Needed $FactionsPro->getFaction
-		$FactionsPro = $player->getFaction ()->getName (); // can be very bad
-		$format = str_replace ( "{Factions}", $player->getFaction(), $format );
-
->>>>>>> origin/master
 		$nick = $this->pgin->getConfig ()->get ( $player->getName () > ".nick");
 		if ($nick!=null) {
 			$format = str_replace ( "{DISPLAY_NAME}", $nick, $format );
@@ -111,6 +99,16 @@ class ccListener implements Listener {
 		}
 		$format = str_replace ( "{PREFIX}", $prefix, $format );
 		return $format;
+		
+		
+		// FacionsPro Needed 
+		if($factionspro->isInFaction($playerName)) {
+			return $factionspro->getFaction($playerName);
+							$format = str_replace("{Factions_Name}", $this->$factionspro->getPlayerFaction($player->getName()), $format);
+			} else {
+				return false;
+				}
+		
 	}
 	private function log($msg) {
 		$this->pgin->getLogger ()->info ( $msg );
