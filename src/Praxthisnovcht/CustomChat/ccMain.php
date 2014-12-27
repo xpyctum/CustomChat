@@ -109,7 +109,7 @@ class ccMain extends PluginBase implements CommandExecutor {
 // 	}
 	public function fixConfigData() {
 		if (! $this->getConfig ()->get ( "chat-format" )) {
-			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{FACTION}][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}" );
+			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{FACTION}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
 		}
 		
 		if (! $this->getConfig ()->get ( "if-player-has-no-faction" )) {
