@@ -15,7 +15,6 @@ use pocketmine\utils\TextFormat;
 
 /**
  * PraxListener // CustomChat 1.1.7 Release
- *
  */
 class ccListener implements Listener {
 	public $pgin;

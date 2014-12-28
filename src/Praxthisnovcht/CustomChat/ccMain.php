@@ -41,8 +41,7 @@ use pocketmine\network\protocol\LoginPacket;
 use pocketmine\level\generator\Generator;
 
 /**
- * Main // CustomChat 1.1.7 Release
- *        
+ * Main // CustomChat 1.1.7 Release  
  */
 class ccMain extends PluginBase implements CommandExecutor {
 
