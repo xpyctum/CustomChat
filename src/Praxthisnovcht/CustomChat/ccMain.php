@@ -46,7 +46,7 @@ use pocketmine\level\generator\Generator;
 class ccMain extends PluginBase implements CommandExecutor {
 
 	public $pos_display_flag = 0;
-	private $factionspro;
+	private $factionspro,$pureperms,$economyjob;
 	public $swCommand;
 	
 	/**
@@ -69,9 +69,20 @@ class ccMain extends PluginBase implements CommandExecutor {
 	 */
 	public function onEnable() {
 		$this->enabled = true;
+		// Use FactionsPro by Tethered_
 		if(!$this->getServer()->getPluginManager()->getPlugin("FactionsPro") == false) {
 			$this->factionspro = $this->getServer()->getPluginManager()->getPlugin("FactionsPro");
 			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With FactionsPro!" );
+			
+		// Use EconomyJob by Onebone	
+		if(!$this->getServer()->getPluginManager()->getPlugin("EconomyJob") == false) {
+			$this->economyjob = $this->getServer()->getPluginManager()->getPlugin("EconomyJob");
+			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With EconomyJob!" );
+			
+		// Use PurePerms by 64FF00	
+		if(!$this->getServer()->getPluginManager()->getPlugin("PurePerms ") == false) {
+			$this->pureperms = $this->getServer()->getPluginManager()->getPlugin("PurePerms ");
+			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With PurePerms !" );
 		}
 		$this->getServer()->getPluginManager()->registerEvents(new ccListener($this), $this);
 		$this->log ( TextFormat::GREEN . "- CustomChat - Enabled!" );
@@ -114,6 +125,10 @@ class ccMain extends PluginBase implements CommandExecutor {
 		
 		if (! $this->getConfig ()->get ( "if-player-has-no-faction" )) {
 			$this->getConfig ()->set ( "if-player-has-no-faction", "NoFaction" );
+		}
+		
+		if (! $this->getConfig ()->get ( "if-player-has-no-job" )) {
+			$this->getConfig ()->set ( "if-player-has-no-job", "unemployed" );
 		}
 	
 		if (! $this->getConfig ()->get ( "enable-formatter" )) {

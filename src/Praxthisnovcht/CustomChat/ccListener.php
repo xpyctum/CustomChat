@@ -21,7 +21,12 @@ class ccListener implements Listener {
 	private $factionspro;
 	public function __construct(ccMain $pg) {
 		$this->pgin = $pg;
+        // Use FactionsPro by Tethered_
 		$this->factionspro = $this->pgin->getServer()->getPluginManager()->getPlugin("FactionsPro");
+		// Use EconomyJob by Onebone	   
+		$this->economyjob = $this->pgin->getServer()->getPluginManager()->getPlugin("EconomyJob");
+		// Use PurePerms by 64FF00	
+		$this->pureperms = $this->pgin->getServer()->getPluginManager()->getPlugin("PurePerms");
 	}
 
 	public function onPlayerChat(PlayerChatEvent $event) {
@@ -82,6 +87,24 @@ class ccListener implements Listener {
 			$nofac = $this->pgin->getConfig ()->get ( "if-player-has-no-faction");
 			$format = str_replace ( "{FACTION}", $nofac, $format );
 		}
+		// Use EconomyJob by Onebone	
+        if($economyjob->exists($sender)) {
+            return $economyjob->$job($sender);
+                            $format = str_replace("{JOB}", $this->$economyjob->$job($player->getName()), $format);
+            } else {
+			    $nojob = $this->pgin->getConfig ()->get ( "if-player-has-no-job");
+			    $format = str_replace ( "{JOB}", $nojob, $format );
+		}
+
+        if($pureperms->groupName($playerName)) {
+            return $pureperms->getUser($playerName);
+                            $format = str_replace("{PurePerms}", $this->pureperms->getGroup->($levelName)->($player->getName()), $format);
+            } else {
+                return false;
+                }
+         
+       
+		
 			$nick = $this->pgin->getConfig ()->get ( $player->getName () > ".nick");
 		if ($nick!=null) {
 			$format = str_replace ( "{DISPLAY_NAME}", $nick, $format );
