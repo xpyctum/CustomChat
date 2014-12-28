@@ -29,7 +29,7 @@ use pocketmine\network\protocol\Info;
 use pocketmine\network\protocol\LoginPacket;
 
 /**
- * Command Version 1.1.7 add FactionsPro Plugin
+ * Command // CustomChat 1.1.7 Release
  *
  */
 class ccCommand {
