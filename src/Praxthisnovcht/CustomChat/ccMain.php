@@ -130,6 +130,9 @@ class ccMain extends PluginBase implements CommandExecutor {
 		if (! $this->getConfig ()->get ( "if-player-has-no-job" )) {
 			$this->getConfig ()->set ( "if-player-has-no-job", "unemployed" );
 		}
+		
+		if (! $this->getConfig ()->get ( "Enable Support Money" )) {
+			$this->getConfig ()->set ( "Enable Support Money", false );	
 	
 		if (! $this->getConfig ()->get ( "enable-formatter" )) {
 			$this->getConfig ()->set ( "enable-formatter", true );
