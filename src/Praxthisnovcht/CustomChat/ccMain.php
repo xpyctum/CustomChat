@@ -119,8 +119,14 @@ class ccMain extends PluginBase implements CommandExecutor {
 // 		$this->loadConfig ();
 // 	}
 	public function fixConfigData() {
+//		  It is completely useless to have chat-format '{PurePerms}' and '{PREFIX}'.
+//                We must put a single to avoid confusion.
+//                So use either:
+//                "{WORLD_NAME}:<{JOB}>[{FACTION}][{PurePerms}]<{DISPLAY_NAME}> {MESSAGE}"
+//                oR
+//                "{WORLD_NAME}:<{JOB}>[{FACTION}][{PREFIX}<{DISPLAY_NAME}> {MESSAGE}"
 		if (! $this->getConfig ()->get ( "chat-format" )) {
-			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{FACTION}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
+			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:<{JOB}>[{FACTION}][{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
 		}
 		
 		if (! $this->getConfig ()->get ( "if-player-has-no-faction" )) {
