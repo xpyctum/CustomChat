@@ -46,7 +46,9 @@ use pocketmine\level\generator\Generator;
 class ccMain extends PluginBase implements CommandExecutor {
 
 	public $pos_display_flag = 0;
-	private $factionspro,$pureperms,$economyjob;
+	private $factionspro;
+	private $pureperms;
+	private $economyjob;
 	public $swCommand;
 	
 	/**
@@ -73,12 +75,12 @@ class ccMain extends PluginBase implements CommandExecutor {
 		if(!$this->getServer()->getPluginManager()->getPlugin("FactionsPro") == false) {
 			$this->factionspro = $this->getServer()->getPluginManager()->getPlugin("FactionsPro");
 			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With FactionsPro!" );
-			
+		}	
 		// Use EconomyJob by Onebone	
 		if(!$this->getServer()->getPluginManager()->getPlugin("EconomyJob") == false) {
 			$this->economyjob = $this->getServer()->getPluginManager()->getPlugin("EconomyJob");
 			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With EconomyJob!" );
-			
+		}	
 		// Use PurePerms by 64FF00	
 		if(!$this->getServer()->getPluginManager()->getPlugin("PurePerms ") == false) {
 			$this->pureperms = $this->getServer()->getPluginManager()->getPlugin("PurePerms ");
@@ -128,30 +130,24 @@ class ccMain extends PluginBase implements CommandExecutor {
 		if (! $this->getConfig ()->get ( "chat-format" )) {
 			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:<{JOB}>[{FACTION}][{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
 		}
-		
 		if (! $this->getConfig ()->get ( "if-player-has-no-faction" )) {
 			$this->getConfig ()->set ( "if-player-has-no-faction", "NoFaction" );
 		}
-		
 		if (! $this->getConfig ()->get ( "if-player-has-no-job" )) {
 			$this->getConfig ()->set ( "if-player-has-no-job", "unemployed" );
 		}
-		
 		if (! $this->getConfig ()->get ( "Enable Support Money" )) {
 			$this->getConfig ()->set ( "Enable Support Money", false );	
-	
+		}
 		if (! $this->getConfig ()->get ( "enable-formatter" )) {
 			$this->getConfig ()->set ( "enable-formatter", true );
 		}
-	
 		if (! $this->getConfig ()->get ( "disablechat" )) {
 			$this->getConfig ()->set ( "disablechat", false );
 		}
-	
 		if (! $this->getConfig ()->get ( "default-player-prefix" )) {
 			$this->getConfig ()->set ( "default-player-prefix", "Default" );
 		}
-	
 		$this->getConfig()->save();
 	}
 	
@@ -164,7 +160,6 @@ class ccMain extends PluginBase implements CommandExecutor {
 			//use default prefix
 			$prefix = $this->getConfig ()->get ( "default-player-prefix");
 		}
-	
 		//check if player has nick name
 		$nick = $this->getConfig ()->get ( $p->getName().".nick");
 		if ($nick!=null && $prefix!=null) {
@@ -179,7 +174,6 @@ class ccMain extends PluginBase implements CommandExecutor {
 			$p->setNameTag($prefix . ":".$p->getName());
 			return;
 		}
-	
 		//default to regular name
 		$p->setNameTag($p->getName());
 		return;
