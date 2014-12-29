@@ -12,6 +12,11 @@
 ---
 chat-format: '{WORLD_NAME}:[{FACTION}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 if-player-has-no-faction: NoFaction
+# No need to touch it directly supports the CustomChat
+if-player-has-no-faction: unemployed
+# need to add to the Chat-Format "{JOB]"
+Enable Support Money: false
+# Will be able to load money players EconomyAPI, PocketMoney, MassiveEconomy
 enable-formatter: true
 disablechat: false
 default-player-prefix: Default
