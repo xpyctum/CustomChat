@@ -10,7 +10,7 @@
 #CustomChat Chat Format Color Next Version ###
 ##########################################
 ---
-chat-format: '{WORLD_NAME}:[{FACTION}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
+chat-format: '{WORLD_NAME}:[{FACTION}][{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 if-player-has-no-faction: NoFaction
 # No need to touch it directly supports the CustomChat
 if-player-has-no-job: unemployed
