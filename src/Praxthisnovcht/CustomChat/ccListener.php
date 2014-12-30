@@ -3,6 +3,7 @@
 namespace Praxthisnovcht\CustomChat;
 
 use pocketmine\event\Listener;
+use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\level\Position;
@@ -87,18 +88,14 @@ class ccListener implements Listener {
 			$nofac = $this->pgin->getConfig ()->get ( "if-player-has-no-faction");
 			$format = str_replace ( "{FACTION}", $nofac, $format );
 		}
-		// Use EconomyJob by Onebone	
-        if($economyjob->exists($sender)) {
-            return $economyjob->$job($sender);
-                            $format = str_replace("{JOB}", $this->$economyjob->$job($player->getName()), $format);
-            } else {
-			    $nojob = $this->pgin->getConfig ()->get ( "if-player-has-no-job");
-			    $format = str_replace ( "{JOB}", $nojob, $format );
-		}
 
-        if($pureperms->groupName($playerName)) {
-            return $pureperms->getUser($playerName);
-                            $format = str_replace("{PurePerms}", $this->pureperms->getGroup->($levelName)->($player->getName()), $format);
+		if(!$this->pureperms) {
+			$format = str_replace("{PurePerms}", "NoGroup", $format);
+		}
+		if($this->pureperms) {
+				$isMultiWorldEnabled = $this->pureperms->getConfig()->get("enable-multiworld-formats");
+				$levelName = $isMultiWorldEnabled ?  $player->getLevel()->getName() : null;
+                $format = str_replace("{PurePerms}", $this->pureperms->getUser($player)->getGroup($levelName)->getName(), $format);
             } else {
                 return false;
                 }
