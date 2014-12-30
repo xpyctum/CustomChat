@@ -82,7 +82,7 @@ class ccMain extends PluginBase implements CommandExecutor {
 			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With EconomyJob!" );
 		}	
 		// Use PurePerms by 64FF00	
-		if(!$this->getServer()->getPluginManager()->getPlugin("PurePerms ") == false) {
+		if(!$this->getServer()->getPluginManager()->getPlugin("PurePerms") == false) {
 			$this->pureperms = $this->getServer()->getPluginManager()->getPlugin("PurePerms ");
 			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With PurePerms !" );
 		}
