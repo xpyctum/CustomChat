@@ -1,21 +1,11 @@
-#####################################################################################################################################
-# chat-format: '{WORLD_NAME}:[(Factions-Names)][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}' < Need CustomChat & FactionsPo & PlayersStats ###
-######################################################################################################################################
-# chat-format: '[(Factions-Names)][{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}' < Need CustomChat & FactionsPo & PlayersStats ###
-#######################################################################################################################
-# chat-format: '[{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'	< Need CustomChat & PlayersStats ###
-###########################################################################################
-# chat-format: '[{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'	< Need Only CustomChat ##
-#############################################################################
-#CustomChat Chat Format Color Next Version ###
-##########################################
+
 ---
 chat-format: '{WORLD_NAME}:[{FACTION}][{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 if-player-has-no-faction: NoFaction
 # No need to touch it directly supports the CustomChat
-if-player-has-no-job: unemployed
+#if-player-has-no-job: unemployed TODO
 # need to add to the Chat-Format "{JOB]"
-Enable Support Money: false
+#Enable Support Money: false TODO
 # Will be able to load money players EconomyAPI, PocketMoney, MassiveEconomy
 enable-formatter: true
 disablechat: false
