@@ -108,7 +108,14 @@ class ccListener implements Listener {
 		} else {
 			$format = str_replace ( "{DISPLAY_NAME}", $player->getName (), $format );			
 		}
+		/* --------- PLAYERSTATS API PART ------ */
+		$ps_deaths = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getDeaths($player);
+		if($ps_deaths == null){
+			$ps_deaths = "";
+		}
+		$format = str_replace("{PS_DEATHS}",$ps_deaths, $format);
 		
+		/* ----------- ENDED API PART -------- */
 		$format = str_replace ( "{MESSAGE}", $message, $format );
 		
 		$level = $player->getLevel ()->getName ();
