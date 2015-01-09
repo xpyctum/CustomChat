@@ -15,19 +15,35 @@ use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
 /**
- * PraxListener // CustomChat 1.1.7 Release
+ * PraxListener // CustomChat 1.1.2 Release
  */
 class ccListener implements Listener {
 	public $pgin;
 	private $factionspro;
 	public function __construct(ccMain $pg) {
 		$this->pgin = $pg;
-        // Use FactionsPro by Tethered_
+         // Use FactionsPro by Tethered_
 		$this->factionspro = $this->pgin->getServer()->getPluginManager()->getPlugin("FactionsPro");
 		// Use EconomyJob by Onebone	   
 		$this->economyjob = $this->pgin->getServer()->getPluginManager()->getPlugin("EconomyJob");
 		// Use PurePerms by 64FF00	
 		$this->pureperms = $this->pgin->getServer()->getPluginManager()->getPlugin("PurePerms");
+		
+		
+		$playerstats_deaths = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
+			// Counter deaths 
+		$playerstats_break = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
+			// Counter Break Block
+		$playerstats_pose = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
+			// Counter Pose Block
+		$playerstats_leave = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
+			// Counter Leave Games
+		$playerstats_kick = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
+			// Counter Kicked Games
+		$playerstats_join = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
+			// Counter Join Games
+		$playerstats_drop = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
+			// Counter Drops
 	}
 
 	public function onPlayerChat(PlayerChatEvent $event) {
@@ -95,7 +111,7 @@ class ccListener implements Listener {
 		if($this->pureperms) {
 				$isMultiWorldEnabled = $this->pureperms->getConfig()->get("enable-multiworld-formats");
 				$levelName = $isMultiWorldEnabled ?  $player->getLevel()->getName() : null;
-                $format = str_replace("{PurePerms}", $this->pureperms->getUser($player)->getGroup($levelName)->getName(), $format);
+                 $format = str_replace("{PurePerms}", $this->pureperms->getUser($player)->getGroup($levelName)->getName(), $format);
             } else {
                 return false;
                 }
@@ -108,14 +124,7 @@ class ccListener implements Listener {
 		} else {
 			$format = str_replace ( "{DISPLAY_NAME}", $player->getName (), $format );			
 		}
-		/* --------- PLAYERSTATS API PART ------ */
-		$ps_deaths = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getDeaths($player);
-		if($ps_deaths == null){
-			$ps_deaths = "";
-		}
-		$format = str_replace("{PS_DEATHS}",$ps_deaths, $format);
 		
-		/* ----------- ENDED API PART -------- */
 		$format = str_replace ( "{MESSAGE}", $message, $format );
 		
 		$level = $player->getLevel ()->getName ();
