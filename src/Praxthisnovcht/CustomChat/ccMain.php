@@ -41,15 +41,25 @@ use pocketmine\network\protocol\LoginPacket;
 use pocketmine\level\generator\Generator;
 
 /**
- * Main // CustomChat 1.1.7 Release  
+ * Main // CustomChat 1.2.8 Release  
  */
 class ccMain extends PluginBase implements CommandExecutor {
 
 	public $pos_display_flag = 0;
+	
+	
+	private $playerstats_deaths;
+	private $playerstats_break;
+	private $playerstats_pose;
+	private $playerstats_leave;
+	private $playerstats_kick;
+	private $playerstats_join;
+	private $playerstats_drop;
 	private $factionspro;
 	private $pureperms;
 	private $economyjob;
 	public $swCommand;
+	
 	
 	/**
 	 * OnLoad
@@ -71,6 +81,31 @@ class ccMain extends PluginBase implements CommandExecutor {
 	 */
 	public function onEnable() {
 		$this->enabled = true;
+		
+		// Use PlayerStats By 
+        //   ╔══╗╔══╗╔═══╗╔╗╔╗╔══╗╔════╗╔╗╔╗╔╗──╔╗
+        //   ╚═╗║║╔═╝║╔═╗║║║║║║╔═╝╚═╗╔═╝║║║║║║──║║
+        //   ──║╚╝║──║╚═╝║║╚╝║║║────║║──║║║║║╚╗╔╝║
+        //   ──║╔╗║──║╔══╝╚═╗║║║────║║──║║║║║╔╗╔╗║
+        //   ╔═╝║║╚═╗║║────╔╝║║╚═╗──║║──║╚╝║║║╚╝║║
+        //   ╚══╝╚══╝╚╝────╚═╝╚══╝──╚╝──╚══╝╚╝──╚╝		
+		if(!$this->getServer()->getPluginManager()->getPlugin("PlayerStats") == false) {
+			$playerstats_deaths = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getDeaths($player);
+			// Counter deaths 
+			$playerstats_break = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getBreaks($player);
+			// Counter Break Block
+			$playerstats_pose = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getPlaces($player);
+			// Counter Pose Block
+			$playerstats_leave = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getDeaths($player);
+			// Counter Leave Games
+			$playerstats_kick = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getKicked($player);
+			// Counter Kicked Games
+			$playerstats_join = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getJoins($player);
+			// Counter Join Games
+			$playerstats_drop = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getDrops($player);
+			// Counter Drops
+			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With PlayerStats !" );
+		}
 		// Use FactionsPro by Tethered_
 		if(!$this->getServer()->getPluginManager()->getPlugin("FactionsPro") == false) {
 			$this->factionspro = $this->getServer()->getPluginManager()->getPlugin("FactionsPro");
@@ -188,3 +223,4 @@ class ccMain extends PluginBase implements CommandExecutor {
 		$this->getLogger ()->info ( $msg );
 	}
 }
+xpyctum
