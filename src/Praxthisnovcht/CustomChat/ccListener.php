@@ -115,6 +115,45 @@ class ccListener implements Listener {
             } else {
                 return false;
                 }
+				
+		/* --------- PLAYERSTATS API PART ------ */
+		if($playerstats_deaths == null){
+			$playerstats_deaths = "";
+		}
+		$format = str_replace("{Deaths}",$playerstats_deaths, $format);
+		
+		if($playerstats_break == null){
+			$playerstats_break = "";
+		}
+		$format = str_replace("{Break_Block}",$playerstats_break, $format);
+		
+		if($playerstats_pose == null){
+			$playerstats_pose = "";
+		}
+		$format = str_replace("{Pose_Block}",$playerstats_pose, $format);
+		
+		if($playerstats_leave == null){
+			$playerstats_leave = "";
+		}
+		$format = str_replace("{Leave_Counter}",$playerstats_leave, $format);		
+
+		if($playerstats_kick == null){
+			$playerstats_kick = "";
+		}
+		$format = str_replace("{Kick_Counter}",$playerstats_kick, $format);				
+
+		if($playerstats_join == null){
+			$playerstats_join = "";
+		}
+		$format = str_replace("{Counter_JoinGames}",$playerstats_join, $format);		
+
+		if($playerstats_drop == null){
+			$playerstats_drop = "";
+		}
+		$format = str_replace("{Drops_Block}",$playerstats_drop, $format);				
+		/* ----------- ENDED API PART -------- */		
+         
+       
          
        
 		
