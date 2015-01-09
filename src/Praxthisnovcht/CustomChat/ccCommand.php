@@ -29,7 +29,7 @@ use pocketmine\network\protocol\Info;
 use pocketmine\network\protocol\LoginPacket;
 
 /**
- * Command // CustomChat 1.2.5 Release
+ * Command // CustomChat 1.2.8 Release
  *
  */
 class ccCommand {
