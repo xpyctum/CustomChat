@@ -30,20 +30,8 @@ class ccListener implements Listener {
 		$this->pureperms = $this->pgin->getServer()->getPluginManager()->getPlugin("PurePerms");
 		
 		
-		$playerstats_deaths = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
-			// Counter deaths 
-		$playerstats_break = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
-			// Counter Break Block
-		$playerstats_pose = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
-			// Counter Pose Block
-		$playerstats_leave = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
-			// Counter Leave Games
-		$playerstats_kick = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
-			// Counter Kicked Games
-		$playerstats_join = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
-			// Counter Join Games
-		$playerstats_drop = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
-			// Counter Drops
+		$playerstats = $this->pgin->getServer()->getPluginManager()->getPlugin("PlayerStats");
+			// Counter ALL! Then use $playerstats->get(whatYouNeed!);
 	}
 
 	public function onPlayerChat(PlayerChatEvent $event) {
@@ -117,7 +105,7 @@ class ccListener implements Listener {
                 }
 				
 		/* --------- PLAYERSTATS API PART ------ */
-		if($playerstats_deaths == null){
+		if($playerstats->getDeaths($player) == null){
 			$playerstats_deaths = "";
 		}
 		$format = str_replace("{Deaths}",$playerstats_deaths, $format);
