@@ -109,36 +109,38 @@ class ccListener implements Listener {
 			$playerstats_deaths = "";
 		}
 		$format = str_replace("{Deaths}",$playerstats_deaths, $format);
+		#################################################################
 		
-		if($playerstats_break == null){
+		if($playerstats->getBreaks($player) == null){
 			$playerstats_break = "";
 		}
 		$format = str_replace("{Break_Block}",$playerstats_break, $format);
-		
-		if($playerstats_pose == null){
+		#################################################################		
+		if($playerstats->getPlaces($player) == null){
 			$playerstats_pose = "";
 		}
 		$format = str_replace("{Pose_Block}",$playerstats_pose, $format);
-		
-		if($playerstats_leave == null){
+		#################################################################				
+		if($playerstats->getLeaves($player) == null){
 			$playerstats_leave = "";
 		}
 		$format = str_replace("{Leave_Counter}",$playerstats_leave, $format);		
-
-		if($playerstats_kick == null){
+		#################################################################				
+		if($playerstats->getKicked($player) == null){
 			$playerstats_kick = "";
 		}
 		$format = str_replace("{Kick_Counter}",$playerstats_kick, $format);				
-
-		if($playerstats_join == null){
+		#################################################################				
+		if($playerstats->getJoins($player) == null){
 			$playerstats_join = "";
 		}
 		$format = str_replace("{Counter_JoinGames}",$playerstats_join, $format);		
-
-		if($playerstats_drop == null){
+		#################################################################				
+		if($playerstats->getDrops($player) == null){
 			$playerstats_drop = "";
 		}
-		$format = str_replace("{Drops_Block}",$playerstats_drop, $format);				
+		$format = str_replace("{Drops_Block}",$playerstats_drop, $format);
+		#################################################################						
 		/* ----------- ENDED API PART -------- */		
          
        
