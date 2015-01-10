@@ -110,7 +110,7 @@ class ccListener implements Listener {
 		}
 		$format = str_replace("{Deaths}",$playerstats_deaths, $format);
 		
-		if($playerstats_breaks == null){
+		if($playerstats_break == null){
 			$playerstats_break = "";
 		}
 		$format = str_replace("{Break_Block}",$playerstats_break, $format);
