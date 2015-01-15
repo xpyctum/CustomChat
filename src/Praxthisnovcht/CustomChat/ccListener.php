@@ -82,9 +82,9 @@ class ccListener implements Listener {
 		$format = $this->pgin->getConfig ()->get ( "chat-format" );
 		// "chat-format: '{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'";		
 		$format = str_replace ( "{WORLD_NAME}", $player->getLevel ()->getName (), $format );
-		// PlayerStats Needed  ")->getDeaths($player);
+		
+		
 		// FactionsPro Needed $FactionsPro->getFaction
-		// CustomChat 1.1.7 Release
 		if($this->factionspro == true && $this->factionspro->isInFaction($player->getName())) {
 			$getUserFaction = $this->factionspro->getPlayerFaction($player->getName()); 
 			$format = str_replace ( "{FACTION}", $getUserFaction, $format );
@@ -104,6 +104,17 @@ class ccListener implements Listener {
                 return false;
                 }
 				
+        /*Economy$Job API*/ Code By Angelo 
+        if($this->economyjob && $this->economyjob->player->exists($player->getName())){
+                    $job = $this->economyjob->getPlayers($sender->getName());
+                    $format = str_replace("{JOB}",$job, $format);
+        }else{
+            $nojob = $this->pgin->getConfig()->get("if-player-has-no-job");
+            $format = str_replace("{JOB}",$nojob, $format);
+        }
+        /*Economy$Job API END*/  
+
+		
 		/* --------- PLAYERSTATS API PART ------ */
 		if($playerstats->getDeaths($player) == null){
 			$playerstats_deaths = "";

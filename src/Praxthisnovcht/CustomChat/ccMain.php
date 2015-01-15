@@ -41,7 +41,7 @@ use pocketmine\network\protocol\LoginPacket;
 use pocketmine\level\generator\Generator;
 
 /**
- * Main // CustomChat 1.2.8 Release  
+ * Main // CustomChat 1.3.0 Release  
  */
 class ccMain extends PluginBase implements CommandExecutor {
 
@@ -58,6 +58,8 @@ class ccMain extends PluginBase implements CommandExecutor {
 	private $factionspro;
 	private $pureperms;
 	private $economyjob;
+	
+	
 	public $swCommand;
 	
 	
@@ -68,6 +70,7 @@ class ccMain extends PluginBase implements CommandExecutor {
 	 * @see \pocketmine\plugin\PluginBase::onLoad()
 	 */
 	public function onLoad() {
+		$this->getLogger()->info(TextFormat::YELLOW . "Loading CustomChat v_1.3.0 by Praxthisnovcht");
 		$this->swCommand = new ccCommand ( $this );
 		
 	}
@@ -163,7 +166,10 @@ class ccMain extends PluginBase implements CommandExecutor {
 //                oR
 //                "{WORLD_NAME}:<{JOB}>[{FACTION}][{PREFIX}<{DISPLAY_NAME}> {MESSAGE}"
 		if (! $this->getConfig ()->get ( "chat-format" )) {
-			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:<{JOB}>[{FACTION}][{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
+			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{FACTION}][{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
+		}
+		if (! $this->getConfig ()->get ( "Format options" )) {
+			$this->getConfig ()->set ( "Format options", "Done" );
 		}
 		if (! $this->getConfig ()->get ( "if-player-has-no-faction" )) {
 			$this->getConfig ()->set ( "if-player-has-no-faction", "NoFaction" );
@@ -223,4 +229,3 @@ class ccMain extends PluginBase implements CommandExecutor {
 		$this->getLogger ()->info ( $msg );
 	}
 }
-xpyctum
