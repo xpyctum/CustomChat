@@ -1,7 +1,9 @@
- # Support PlayerStats ( Counter Kill )
- # Support PurePerms
- # Fix /setnick and /delnick
- # Support ChatChannel
- # Support Economy/Pocketmoney... ( Link Money ) / Job for economy
- # Support Level Xp
- # CustomColor Support
+ [X] Support PlayerStats ( Counter )
+ [X] Support PurePerms
+ [ ] Fix /setnick and /delnick
+ [X] Support ChatChannel
+ [ ] Support Economy/MassiveEconomy... ( Link Money FOR MassiveEconomy ) / Job for economy
+ [ ] Support Level Xp
+ [X} CustomColor Support
+ [ ] Support KillChat
+ [ ] CustomJoin Chat Rank 
