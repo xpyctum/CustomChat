@@ -6,6 +6,7 @@ use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\level\Position;
 use pocketmine\event\block\SignChangeEvent;
 use pocketmine\tile\Sign;
@@ -59,10 +60,58 @@ class ccListener implements Listener {
 			return;
 		}
 	}
-	public function onPlayerJoin(PlayerJoinEvent $event) {
+	
+########################################################################################################################
+########################################################################################################################
+## https://forums.pocketmine.net/members/iksaku.1199/ 
+## This part of the plugin CustomMessage.
+## It was created by Isaku | Permission to use the code
+## Yes, I have no problem with that, but by legal issues, I recommend you to merge the plugin with CustomChat, I will delete mine from the repo and I will give you the privileges above CustomMessages so you can freely add those functions to CustomChat !
+
+	public function onPlayerJoin(PlayerJoinEvent $event) {                                                                                                                             
+		$message = $this->getConfig()->get("CustomJoin");                                                                                                                            
+        if($message === false){                                                                                                                                                                    
+            $event->setJoinMessage(null);                                                                                                                                                       
+        }                                                                                                                                                                                                     
+        $message = str_replace("@player", $event->getPlayer()->getDisplayName(), $message);                                                                      
+        $event->setJoinMessage($message);
+		
+		$prefix = null;
+		$playerPrefix = $this->pgin->getConfig ()->get ( $player->getName ().".prefix" );
+		if ($playerPrefix != null) {
+			$prefix = $playerPrefix;
+		} else {
+			//use default prefix
+			$prefix = $this->pgin->getConfig ()->get ( "default-player-prefix");
+		}				
+		if ($prefix == null) {
+			$prefix = "";
+		}
+		$message = str_replace ( "{@prefix}", $prefix, $message );
+		return $message;
+		
+		if($this->factionspro == true && $this->factionspro->isInFaction($player->getName())) {
+			$getUserFaction = $this->factionspro->getPlayerFaction($player->getName()); 
+			$message = str_replace ( "{@faction}", $getUserFaction, $message );
+		}else{
+			$nofac = $this->pgin->getConfig ()->get ( "if-player-has-no-faction");
+			$message = str_replace ( "{@faction}", $nofac, $message );
+		}
+		
+        $message = str_replace ( "{Money}", MassiveEconomyAPI::getInstance()->getMoney($player->getName()), $message); 
+		
+		
+		$message = str_replace ( "{Kills}", KillChat::getInstance()->getDeaths("Player Name")()), $message); 
+		
+	    $message = str_replace ( "{Deaths}", KillChat::getInstance()->getKills("Player Name")()), $message); 		
+		
 		$player = $event->getPlayer ();
 		$this->pgin->formatterPlayerDisplayName ( $player );
+		
 	}
+	
+	
+	
 // 	public function formatterPlayerDisplayName(Player $p) {
 // 		$playerPrefix = $this->pgin->getConfig ()->get ( $player->getName () );
 // 		$defaultPrefix = $this->pgin->getConfig ()->get ( "default-player-prefix" );
@@ -77,7 +126,19 @@ class ccListener implements Listener {
 // 			return;
 // 		}
 // 	}
-	
+    public function onPlayerQuit(PlayerQuitEvent $event){
+        $message = $this->getConfig()->get("CustomLeave");
+        if($message === false){
+            $event->setQuitMessage(null);
+        }
+        $message = str_replace("@player", $event->getPlayer()->getDisplayName(), $message);
+        $event->setQuitMessage($message);
+    }
+########################################################################################################################
+########################################################################################################################
+
+
+
 	public function getFormattedMessage(Player $player, $message) {
 		$format = $this->pgin->getConfig ()->get ( "chat-format" );
 		// "chat-format: '{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'";		
@@ -104,7 +165,6 @@ class ccListener implements Listener {
                 return false;
                 }
 				
-        /*Economy$Job API*/ Code By Angelo 
         if($this->economyjob && $this->economyjob->player->exists($player->getName())){
                     $job = $this->economyjob->getPlayers($sender->getName());
                     $format = str_replace("{JOB}",$job, $format);
@@ -153,8 +213,15 @@ class ccListener implements Listener {
 		$format = str_replace("{Drops_Block}",$playerstats_drop, $format);
 		#################################################################						
 		/* ----------- ENDED API PART -------- */		
-         
-       
+ 
+        $format = str_replace ( "{Money}", MassiveEconomyAPI::getInstance()->getMoney($player->getName()), $format); 
+		
+		
+		$format = str_replace ( "{Kills}", KillChat::getInstance()->getDeaths("Player Name")()), $format); 
+		
+	    $format = str_replace ( "{Deaths}", KillChat::getInstance()->getKills("Player Name")()), $format); 
+		
+     
          
        
 		
