@@ -199,10 +199,10 @@ class ccMain extends PluginBase implements CommandExecutor {
 			$this->getConfig ()->set ( "CustomChat options", "{Kills} | {Deaths} | {Money}" );
 		}
 		if (! $this->getConfig ()->get ( "CustomJoin" )) {
-			$this->getConfig ()->set ( "@player joined the server ! Isaku is Awesome" );
+			$this->getConfig ()->set ( "CustomJoin", "@player joined the server ! Isaku is Awesome" );
 		}
 		if (! $this->getConfig ()->get ( "CustomLeave" )) {
-			$this->getConfig ()->set ( "@player leave the server ! Isaku is Awesome" );
+			$this->getConfig ()->set ( "CustomLeave", "@player leave the server ! Isaku is Awesome" );
 		}	
 		if (! $this->getConfig ()->get ( "if-player-has-no-job" )) {
 			$this->getConfig ()->set ( "if-player-has-no-job", "unemployed" );
