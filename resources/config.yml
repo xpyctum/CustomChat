@@ -5,8 +5,6 @@ enable-formatter: true
 disablechat: false
 default-player-prefix: Default
 CustomChat options: '{Kills} | {Deaths} | {Money}'
-'@player joined the server ! Isaku is Awesome': true
-'@player leave the server ! Isaku is Awesome': true
 if-player-has-no-job: unemployed
 Enable Support Money: false
 ...
