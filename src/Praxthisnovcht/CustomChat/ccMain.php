@@ -40,6 +40,18 @@ use pocketmine\network\protocol\Info;
 use pocketmine\network\protocol\LoginPacket;
 use pocketmine\level\generator\Generator;
 
+
+// Support Money
+########################################
+use MassiveEconomy\MassiveEconomyAPI;  ##
+########################################
+
+
+####################################
+# Addon For CustomChat                      ##
+use Praxthisnovcht\KillChat\KillChat;      ##
+####################################
+
 /**
  * Main // CustomChat 1.3.0 Release  
  */
@@ -59,6 +71,9 @@ class ccMain extends PluginBase implements CommandExecutor {
 	private $pureperms;
 	private $economyjob;
 	
+	private $kc_deaths;
+	private $kc_kills;
+	private $me_money;
 	
 	public $swCommand;
 	
@@ -124,10 +139,22 @@ class ccMain extends PluginBase implements CommandExecutor {
 			$this->pureperms = $this->getServer()->getPluginManager()->getPlugin("PurePerms ");
 			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With PurePerms !" );
 		}
+		
+		if(!$this->getServer()->getPluginManager()->getPlugin("KillChat") == false) {
+			$kc_kills = Server::getInstance()->getPluginManager()->getPlugin("KillChat")->getKills("Player Name");		
+			$kc_deaths = Server::getInstance()->getPluginManager()->getPlugin("KillChat")->getDeaths("Player Name");
+			// KillChat Addon
+			$this->log ( TextFormat::YELLOW . "- CustomChat - Loaded With KillChat [Addon For Only CustomChat] !" );
+		} 
+		if(!$this->getServer()->getPluginManager()->getPlugin("MassiveEconomy") == false) {
+			$me_money = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getMoney("Player Name");
+			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With MassiveEconomy !" );
+		}
+
 		$this->getServer()->getPluginManager()->registerEvents(new ccListener($this), $this);
 		$this->log ( TextFormat::GREEN . "- CustomChat - Enabled!" );
 		$this->loadConfig ();
-	}
+	}		
 	
 	/**
 	 * OnDisable
@@ -168,12 +195,15 @@ class ccMain extends PluginBase implements CommandExecutor {
 		if (! $this->getConfig ()->get ( "chat-format" )) {
 			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{FACTION}][{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
 		}
-		if (! $this->getConfig ()->get ( "Format options" )) {
-			$this->getConfig ()->set ( "Format options", "Done" );
+		if (! $this->getConfig ()->get ( "CustomChat options" )) {
+			$this->getConfig ()->set ( "CustomChat options", "{Kills} | {Deaths} | {Money}" );
 		}
-		if (! $this->getConfig ()->get ( "if-player-has-no-faction" )) {
-			$this->getConfig ()->set ( "if-player-has-no-faction", "NoFaction" );
+		if (! $this->getConfig ()->get ( "CustomJoin" )) {
+			$this->getConfig ()->set ( "@player joined the server ! Isaku is Awesome" );
 		}
+		if (! $this->getConfig ()->get ( "CustomLeave" )) {
+			$this->getConfig ()->set ( "@player leave the server ! Isaku is Awesome" );
+		}	
 		if (! $this->getConfig ()->get ( "if-player-has-no-job" )) {
 			$this->getConfig ()->set ( "if-player-has-no-job", "unemployed" );
 		}

@@ -1,13 +1,12 @@
-
 ---
 chat-format: '{WORLD_NAME}:[{FACTION}][{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 if-player-has-no-faction: NoFaction
-# No need to touch it directly supports the CustomChat
-#if-player-has-no-job: unemployed TODO
-# need to add to the Chat-Format "{JOB]"
-#Enable Support Money: false TODO
-# Will be able to load money players EconomyAPI, PocketMoney, MassiveEconomy
 enable-formatter: true
 disablechat: false
 default-player-prefix: Default
+CustomChat options: '{Kills} | {Deaths} | {Money}'
+'@player joined the server ! Isaku is Awesome': true
+'@player leave the server ! Isaku is Awesome': true
+if-player-has-no-job: unemployed
+Enable Support Money: false
 ...
