@@ -65,8 +65,8 @@ class ccListener implements Listener {
 ########################################################################################################################
 ## https://forums.pocketmine.net/members/iksaku.1199/ 
 ## This part of the plugin CustomMessage.
-## It was created by Isaku | Permission to use the code
-## Yes, I have no problem with that, but by legal issues, I recommend you to merge the plugin with CustomChat, I will delete mine from the repo and I will give you the privileges above CustomMessages so you can freely add those functions to CustomChat !
+## Part of the code was created by iksaku, official permission:
+## 'Yes, I have no problem with that, but by legal issues, I recommend you to merge the plugin with CustomChat, I will delete mine from the repo and I will give you the privileges above CustomMessages so you can freely add those functions to CustomChat!
 
 	public function onPlayerJoin(PlayerJoinEvent $event) {                                                                                                                             
 		$message = $this->getConfig()->get("CustomJoin");                                                                                                                            
