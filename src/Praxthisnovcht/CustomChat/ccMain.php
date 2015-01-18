@@ -41,6 +41,7 @@ use pocketmine\network\protocol\LoginPacket;
 use pocketmine\level\generator\Generator;
 
 
+
 // Support Money
 ########################################
 use MassiveEconomy\MassiveEconomyAPI;  ##
@@ -52,31 +53,20 @@ use MassiveEconomy\MassiveEconomyAPI;  ##
 use Praxthisnovcht\KillChat\KillChat;      ##
 ####################################
 
+
 /**
- * Main // CustomChat 1.3.0 Release  
+ * Main // CustomChat 1.1.2 Release  
  */
 class ccMain extends PluginBase implements CommandExecutor {
 
 	public $pos_display_flag = 0;
-	
-	
-	private $playerstats_deaths;
-	private $playerstats_break;
-	private $playerstats_pose;
-	private $playerstats_leave;
-	private $playerstats_kick;
-	private $playerstats_join;
-	private $playerstats_drop;
 	private $factionspro;
 	private $pureperms;
+	
 	private $economyjob;
 	
-	private $kc_deaths;
-	private $kc_kills;
-	private $me_money;
 	
 	public $swCommand;
-	
 	
 	/**
 	 * OnLoad
@@ -85,7 +75,7 @@ class ccMain extends PluginBase implements CommandExecutor {
 	 * @see \pocketmine\plugin\PluginBase::onLoad()
 	 */
 	public function onLoad() {
-		$this->getLogger()->info(TextFormat::YELLOW . "Loading CustomChat v_1.3.0 by Praxthisnovcht");
+	    $this->getLogger()->info(TextFormat::YELLOW . "Loading CustomChat v_1.3.1 by Praxthisnovcht");
 		$this->swCommand = new ccCommand ( $this );
 		
 	}
@@ -98,48 +88,17 @@ class ccMain extends PluginBase implements CommandExecutor {
 	 * @see \pocketmine\plugin\PluginBase::onEnable()
 	 */
 	public function onEnable() {
-		$this->enabled = true;
-		
-		// Use PlayerStats By 
-        //   ╔══╗╔══╗╔═══╗╔╗╔╗╔══╗╔════╗╔╗╔╗╔╗──╔╗
-        //   ╚═╗║║╔═╝║╔═╗║║║║║║╔═╝╚═╗╔═╝║║║║║║──║║
-        //   ──║╚╝║──║╚═╝║║╚╝║║║────║║──║║║║║╚╗╔╝║
-        //   ──║╔╗║──║╔══╝╚═╗║║║────║║──║║║║║╔╗╔╗║
-        //   ╔═╝║║╚═╗║║────╔╝║║╚═╗──║║──║╚╝║║║╚╝║║
-        //   ╚══╝╚══╝╚╝────╚═╝╚══╝──╚╝──╚══╝╚╝──╚╝		
-		if(!$this->getServer()->getPluginManager()->getPlugin("PlayerStats") == false) {
-			$playerstats_deaths = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getDeaths($player);
-			// Counter deaths 
-			$playerstats_break = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getBreaks($player);
-			// Counter Break Block
-			$playerstats_pose = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getPlaces($player);
-			// Counter Pose Block
-			$playerstats_leave = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getDeaths($player);
-			// Counter Leave Games
-			$playerstats_kick = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getKicked($player);
-			// Counter Kicked Games
-			$playerstats_join = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getJoins($player);
-			// Counter Join Games
-			$playerstats_drop = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getDrops($player);
-			// Counter Drops
-			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With PlayerStats !" );
-		}
+		   $this->enabled = true;
 		// Use FactionsPro by Tethered_
 		if(!$this->getServer()->getPluginManager()->getPlugin("FactionsPro") == false) {
 			$this->factionspro = $this->getServer()->getPluginManager()->getPlugin("FactionsPro");
 			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With FactionsPro!" );
-		}	
-		// Use EconomyJob by Onebone	
-		if(!$this->getServer()->getPluginManager()->getPlugin("EconomyJob") == false) {
-			$this->economyjob = $this->getServer()->getPluginManager()->getPlugin("EconomyJob");
-			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With EconomyJob!" );
 		}	
 		// Use PurePerms by 64FF00	
 		if(!$this->getServer()->getPluginManager()->getPlugin("PurePerms") == false) {
 			$this->pureperms = $this->getServer()->getPluginManager()->getPlugin("PurePerms ");
 			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With PurePerms !" );
 		}
-		
 		if(!$this->getServer()->getPluginManager()->getPlugin("KillChat") == false) {
 			$kc_kills = Server::getInstance()->getPluginManager()->getPlugin("KillChat")->getKills("Player Name");		
 			$kc_deaths = Server::getInstance()->getPluginManager()->getPlugin("KillChat")->getDeaths("Player Name");
@@ -147,14 +106,18 @@ class ccMain extends PluginBase implements CommandExecutor {
 			$this->log ( TextFormat::YELLOW . "- CustomChat - Loaded With KillChat [Addon For Only CustomChat] !" );
 		} 
 		if(!$this->getServer()->getPluginManager()->getPlugin("MassiveEconomy") == false) {
-			$me_money = Server::getInstance()->getPluginManager()->getPlugin("PlayerStats")->getMoney("Player Name");
+			$me_money = Server::getInstance()->getPluginManager()->getPlugin("MassiveEconomy");
 			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With MassiveEconomy !" );
 		}
-
+		// Use EconomyJob by Onebone	
+		if(!$this->getServer()->getPluginManager()->getPlugin("EconomyJob") == false) {
+			$this->economyjob = $this->getServer()->getPluginManager()->getPlugin("EconomyJob");
+			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With EconomyJob!" );
+		}
 		$this->getServer()->getPluginManager()->registerEvents(new ccListener($this), $this);
 		$this->log ( TextFormat::GREEN . "- CustomChat - Enabled!" );
 		$this->loadConfig ();
-	}		
+	}
 	
 	/**
 	 * OnDisable
@@ -193,22 +156,22 @@ class ccMain extends PluginBase implements CommandExecutor {
 //                oR
 //                "{WORLD_NAME}:<{JOB}>[{FACTION}][{PREFIX}<{DISPLAY_NAME}> {MESSAGE}"
 		if (! $this->getConfig ()->get ( "chat-format" )) {
-			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:[{FACTION}][{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
+			$this->getConfig ()->set ( "chat-format", "{WORLD_NAME}:<{JOB}>[{FACTION}][{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}" );
 		}
 		if (! $this->getConfig ()->get ( "CustomChat options" )) {
-			$this->getConfig ()->set ( "CustomChat options", "{Kills} | {Deaths} | {Money}" );
+			$this->getConfig ()->set ( "CustomChat options", "{Kills} | {Deaths} | [{Money}$]" );
 		}
 		if (! $this->getConfig ()->get ( "CustomJoin" )) {
-			$this->getConfig ()->set ( "CustomJoin", "@player joined the server ! Isaku is Awesome" );
+			$this->getConfig ()->set ( "CustomJoin", "@player joined the server ! Iksaku is Awesome" );
 		}
 		if (! $this->getConfig ()->get ( "CustomLeave" )) {
-			$this->getConfig ()->set ( "CustomLeave", "@player leave the server ! Isaku is Awesome" );
-		}	
+			$this->getConfig ()->set ( "CustomLeave", "@player leave the server ! Iksaku is Awesome" );
+		}
+		if (! $this->getConfig ()->get ( "if-player-has-no-faction" )) {
+			$this->getConfig ()->set ( "if-player-has-no-faction", "NoFaction" );
+		}
 		if (! $this->getConfig ()->get ( "if-player-has-no-job" )) {
 			$this->getConfig ()->set ( "if-player-has-no-job", "unemployed" );
-		}
-		if (! $this->getConfig ()->get ( "Enable Support Money" )) {
-			$this->getConfig ()->set ( "Enable Support Money", false );	
 		}
 		if (! $this->getConfig ()->get ( "enable-formatter" )) {
 			$this->getConfig ()->set ( "enable-formatter", true );

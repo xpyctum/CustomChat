@@ -1,12 +1,11 @@
 ---
-chat-format: '{WORLD_NAME}:[{FACTION}][{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
+chat-format: '{WORLD_NAME}:[{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}'
 if-player-has-no-faction: NoFaction
+if-player-has-no-job: unemployed
 enable-formatter: true
 disablechat: false
 default-player-prefix: Default
-CustomChat options: '{Kills} | {Deaths} | {Money}'
-if-player-has-no-job: unemployed
-Enable Support Money: false
+CustomChat options: '{Kills} | {Deaths} |  [{Money}$]'
 CustomJoin: '@player joined the server ! Iksaku is Awesome'
 CustomLeave: '@player leave the server ! Iksaku is Awesome'
 ...
