@@ -2,23 +2,10 @@ CustomChat v_1.2.0 ...
 ============
 chat-format: '{WORLD_NAME}:[{FACTION}][{PurePerms}][{PREFIX}]<{DISPLAY_NAME}> {MESSAGE}' 
 
-
-Support PlayersStats Read Doc's [X]
-
-
-Support PurePerms [X] {PurePerms}
-
-
-Support KillChat
-
-
-Support MassiveEconomy {Me_Money}
-
-
-Support ServerChannel
-
-
-Support FactionsPro [X] {FACTION}
+## https://forums.pocketmine.net/members/iksaku.1199/  
+## This part of the plugin CustomMessage. 
+## Part of the code was created by iksaku, official permission: 
+## 'Yes, I have no problem with that, but by legal issues, I recommend you to merge the plugin with CustomChat, I will delete min 
 
 
 # Development
