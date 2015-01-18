@@ -15,6 +15,8 @@ use pocketmine\Player;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
+
+use MassiveEconomy\MassiveEconomyAPI;
 /**
  * PraxListener // CustomChat 1.1.2 Release
  */
@@ -68,12 +70,13 @@ class ccListener implements Listener {
 ## Part of the code was created by iksaku, official permission:
 ## 'Yes, I have no problem with that, but by legal issues, I recommend you to merge the plugin with CustomChat, I will delete mine from the repo and I will give you the privileges above CustomMessages so you can freely add those functions to CustomChat!
 
-	public function onPlayerJoin(PlayerJoinEvent $event) {                                                                                                                             
-		$message = $this->getConfig()->get("CustomJoin");                                                                                                                            
+	public function onPlayerJoin(PlayerJoinEvent $event) {  
+	$message = $this->pgin->getConfig()->get("CustomJoin");	
+		                                                                                                                            
         if($message === false){                                                                                                                                                                    
             $event->setJoinMessage(null);                                                                                                                                                       
         }                                                                                                                                                                                                     
-        $message = str_replace("@player", $event->getPlayer()->getDisplayName(), $message);                                                                      
+        $message = str_replace("@Player", $event->getPlayer()->getDisplayName(), $message);                                                                      
         $event->setJoinMessage($message);
 		
 		$prefix = null;
@@ -87,23 +90,32 @@ class ccListener implements Listener {
 		if ($prefix == null) {
 			$prefix = "";
 		}
-		$message = str_replace ( "{@prefix}", $prefix, $message );
-		return $message;
+	$message = str_replace ( "@Prefix", $prefix, $message );
+	return $message;
 		
 		if($this->factionspro == true && $this->factionspro->isInFaction($player->getName())) {
 			$getUserFaction = $this->factionspro->getPlayerFaction($player->getName()); 
 			$message = str_replace ( "{@faction}", $getUserFaction, $message );
 		}else{
 			$nofac = $this->pgin->getConfig ()->get ( "if-player-has-no-faction");
-			$message = str_replace ( "{@faction}", $nofac, $message );
+			$message = str_replace ( "@Faction", $nofac, $message );
 		}
+		if(!$this->pureperms) {
+			$message = str_replace("@PurePerms", "NoGroup", $message);
+		}
+		if($this->pureperms) {
+				$isMultiWorldEnabled = $this->pureperms->getConfig()->get("enable-multiworld-formats");
+				$levelName = $isMultiWorldEnabled ?  $player->getLevel()->getName() : null;
+                 $message = str_replace("@PurePerms", $this->pureperms->getUser($player)->getGroup($levelName)->getName(), $message);
+            } else {
+                return false;
+                }
 		
-        $message = str_replace ( "{Money}", MassiveEconomyAPI::getInstance()->getMoney($player->getName()), $message); 
-		
-		
-		$message = str_replace ( "{Kills}", KillChat::getInstance()->getDeaths("Player Name")()), $message); 
-		
-	    $message = str_replace ( "{Deaths}", KillChat::getInstance()->getKills("Player Name")()), $message); 		
+        $message = str_replace ( "@Money", MassiveEconomyAPI::getInstance()->getMoney($player->getName()), $message); 
+        
+	$message = str_replace ( "@Kills", KillChat::getInstance()->getDeaths("Player Name")()), $message); 
+	
+	$message = str_replace ( "@Deaths", KillChat::getInstance()->getKills("Player Name")()), $message); 		
 		
 		$player = $event->getPlayer ();
 		$this->pgin->formatterPlayerDisplayName ( $player );
@@ -127,12 +139,52 @@ class ccListener implements Listener {
 // 		}
 // 	}
     public function onPlayerQuit(PlayerQuitEvent $event){
-        $message = $this->getConfig()->get("CustomLeave");
+        $message = $this->pgin->getConfig()->get("CustomLeave"); 
         if($message === false){
             $event->setQuitMessage(null);
         }
         $message = str_replace("@player", $event->getPlayer()->getDisplayName(), $message);
         $event->setQuitMessage($message);
+		
+		$prefix = null;
+		$playerPrefix = $this->pgin->getConfig ()->get ( $player->getName ().".prefix" );
+		if ($playerPrefix != null) {
+			$prefix = $playerPrefix;
+		} else {
+			//use default prefix
+			$prefix = $this->pgin->getConfig ()->get ( "default-player-prefix");
+		}				
+		if ($prefix == null) {
+			$prefix = "";
+		}
+	$message = str_replace ( "@Prefix", $prefix, $message );
+	return $message;
+		
+		if($this->factionspro == true && $this->factionspro->isInFaction($player->getName())) {
+			$getUserFaction = $this->factionspro->getPlayerFaction($player->getName()); 
+			$message = str_replace ( "{@faction}", $getUserFaction, $message );
+		}else{
+			$nofac = $this->pgin->getConfig ()->get ( "if-player-has-no-faction");
+			$message = str_replace ( "@Faction", $nofac, $message );
+		}
+		if(!$this->pureperms) {
+			$message = str_replace("@PurePerms", "NoGroup", $message);
+		}
+		if($this->pureperms) {
+				$isMultiWorldEnabled = $this->pureperms->getConfig()->get("enable-multiworld-formats");
+				$levelName = $isMultiWorldEnabled ?  $player->getLevel()->getName() : null;
+                 $message = str_replace("@PurePerms", $this->pureperms->getUser($player)->getGroup($levelName)->getName(), $message);
+            } else {
+                return false;
+                }
+		
+        $message = str_replace ( "@Money", MassiveEconomyAPI::getInstance()->getMoney($player->getName()), $message); 
+        
+	$message = str_replace ( "@Kills", KillChat::getInstance()->getDeaths("Player Name")()), $message); 
+	
+	$message = str_replace ( "@Deaths", KillChat::getInstance()->getKills("Player Name")()), $message); 		
+	        
+        
     }
 ########################################################################################################################
 ########################################################################################################################
