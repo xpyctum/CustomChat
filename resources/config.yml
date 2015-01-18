@@ -7,6 +7,6 @@ default-player-prefix: Default
 CustomChat options: '{Kills} | {Deaths} | {Money}'
 if-player-has-no-job: unemployed
 Enable Support Money: false
-CustomJoin: '@player joined the server ! Isaku is Awesome'
-CustomLeave: '@player leave the server ! Isaku is Awesome'
+CustomJoin: '@player joined the server ! Iksaku is Awesome'
+CustomLeave: '@player leave the server ! Iksaku is Awesome'
 ...
