@@ -83,12 +83,12 @@ class ccListener implements Listener {
         if($message === false){
             $event->setQuitMessage(null);
         }
-        $message = str_replace("@player", $event->getPlayer()->getDisplayName(), $message);
+        $message = str_replace("@Player", $event->getPlayer()->getDisplayName(), $message);
         $event->setQuitMessage($message);
 		
 		if($this->factionspro == true && $this->factionspro->isInFaction($player->getName())) {
 			$getUserFaction = $this->factionspro->getPlayerFaction($player->getName()); 
-			$message = str_replace ( "{@faction}", $getUserFaction, $message );
+			$message = str_replace ( "@Faction", $getUserFaction, $message );
 		}else{
 			$nofac = $this->pgin->getConfig ()->get ( "if-player-has-no-faction");
 			$message = str_replace ( "@Faction", $nofac, $message );
