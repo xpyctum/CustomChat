@@ -61,54 +61,23 @@ class ccListener implements Listener {
 		}
 	}
 	public function onPlayerJoin(PlayerJoinEvent $event) {
-	    $message = $this->pgin->getConfig()->get("CustomJoin");	
-		                                                                                                                            
+	    $message = $this->pgin->getConfig()->get("CustomJoin");
         if($message === false){                                                                                                                                                                    
             $event->setJoinMessage(null);                                                                                                                                                       
         }                                                                                                                                                                                                     
         $message = str_replace("@Player", $event->getPlayer()->getDisplayName(), $message);                                                                      
         $event->setJoinMessage($message);
-		
-		$prefix = null;
-		$playerPrefix = $this->pgin->getConfig ()->get ( $player->getName ().".prefix" );
-		if ($playerPrefix != null) {
-			$prefix = $playerPrefix;
-		} else {
-			//use default prefix
-			$prefix = $this->pgin->getConfig ()->get ( "default-player-prefix");
-		}				
-		if ($prefix == null) {
-			$prefix = "";
-		}
-	    $message = str_replace ( "@Prefix", $prefix, $message );
-	         return $message;
-		
+			
 		if($this->factionspro == true && $this->factionspro->isInFaction($player->getName())) {
 			$getUserFaction = $this->factionspro->getPlayerFaction($player->getName()); 
 			$message = str_replace ( "{@faction}", $getUserFaction, $message );
 		}else{
 			$nofac = $this->pgin->getConfig ()->get ( "if-player-has-no-faction");
 			$message = str_replace ( "@Faction", $nofac, $message );
-		}
-		if(!$this->pureperms) {
-			$message = str_replace("@PurePerms", "NoGroup", $message);
-		}
-		if($this->pureperms) {
-			$isMultiWorldEnabled = $this->pureperms->getConfig()->get("enable-multiworld-formats");
-			$levelName = $isMultiWorldEnabled ?  $player->getLevel()->getName() : null;
-            $message = str_replace("@PurePerms", $this->pureperms->getUser($player)->getGroup($levelName)->getName(), $message);
-            } else {
-                return false;
-                }
-
-		
-             $message = str_replace ( "@Money", MassiveEconomyAPI::getInstance()->getMoney($player->getName()), $message); 
-        	
-	
+		}		
 		     $player = $event->getPlayer ();
 		     $this->pgin->formatterPlayerDisplayName ( $player );
 	}
-
     public function onPlayerQuit(PlayerQuitEvent $event){
         $message = $this->pgin->getConfig()->get("CustomLeave"); 
         if($message === false){
@@ -117,21 +86,6 @@ class ccListener implements Listener {
         $message = str_replace("@player", $event->getPlayer()->getDisplayName(), $message);
         $event->setQuitMessage($message);
 		
-		
-		$prefix = null;
-		$playerPrefix = $this->pgin->getConfig ()->get ( $player->getName ().".prefix" );
-		if ($playerPrefix != null) {
-			$prefix = $playerPrefix;
-		} else {
-			//use default prefix
-			$prefix = $this->pgin->getConfig ()->get ( "default-player-prefix");
-		}				
-		if ($prefix == null) {
-			$prefix = "";
-		}
-	    $message = str_replace ( "@Prefix", $prefix, $message );
-	         return $message;
-		
 		if($this->factionspro == true && $this->factionspro->isInFaction($player->getName())) {
 			$getUserFaction = $this->factionspro->getPlayerFaction($player->getName()); 
 			$message = str_replace ( "{@faction}", $getUserFaction, $message );
@@ -139,24 +93,6 @@ class ccListener implements Listener {
 			$nofac = $this->pgin->getConfig ()->get ( "if-player-has-no-faction");
 			$message = str_replace ( "@Faction", $nofac, $message );
 		}
-		if(!$this->pureperms) {
-			$message = str_replace("@PurePerms", "NoGroup", $message);
-		}
-		if($this->pureperms) {
-			$isMultiWorldEnabled = $this->pureperms->getConfig()->get("enable-multiworld-formats");
-			$levelName = $isMultiWorldEnabled ?  $player->getLevel()->getName() : null;
-            $message = str_replace("@PurePerms", $this->pureperms->getUser($player)->getGroup($levelName)->getName(), $message);
-            } else {
-                return false;
-                }
-		
-             $message = str_replace ( "@Money", MassiveEconomyAPI::getInstance()->getMoney($player->getName()), $message); 
-        
-	         $message = str_replace ( "@Kills", KillChat::getInstance()->getDeaths($player->getName()), $message); 
-	
-	         $message = str_replace ( "@Deaths", KillChat::getInstance()->getKills($player->getName()), $message); 		
-			 
-			 
 	}
 	public function getFormattedMessage(Player $player, $message) {
 		$format = $this->pgin->getConfig ()->get ( "chat-format" );

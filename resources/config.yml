@@ -6,6 +6,6 @@ enable-formatter: true
 disablechat: false
 default-player-prefix: Default
 CustomChat options: '{Kills} | {Deaths} |  [{Money}$]'
-CustomJoin: '@player joined the server ! Iksaku is Awesome'
-CustomLeave: '@player leave the server ! Iksaku is Awesome'
+CustomJoin: '@Player joined the server ! Iksaku is Awesome'
+CustomLeave: '@Player leave the server ! Iksaku is Awesome'
 ...
