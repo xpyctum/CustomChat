@@ -72,7 +72,11 @@ class ccCommand {
 		}
 		
 		// sets default prefix for new players
-		if ((strtolower ( $command->getName () ) == "defprefix") && isset ( $args [0] )) {
+		if (strtolower ( $command->getName () ) == "defprefix") {
+			if(empty($args[0])) {
+				$sender->sendMessage ("Please enter a valid prefix.");
+				return true;
+			}
 			$playerName = $args [0];
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
@@ -87,7 +91,15 @@ class ccCommand {
 		}
 		
 		// sets prefix for player
-		if ((strtolower ( $command->getName () ) == "setprefix") && isset ( $args [0] ) && isset ( $args [1] )) {
+		if (strtolower ( $command->getName () ) == "setprefix") {
+			if(empty($args[0])) {
+				$sender->sendMessage ("Please enter a valid player name.");
+				return true;
+			}
+			if(empty($args[1])) {
+				$sender->sendMessage ("Please enter a valid prefix.");
+				return true;
+			}
 			$playerName = $args [0];
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
@@ -105,7 +117,11 @@ class ccCommand {
 		}
 		
 		// set player's prefix to default.
-		if ((strtolower ( $command->getName () ) == "delprefix") && isset ( $args [0] )) {
+		if (strtolower ( $command->getName () ) == "delprefix") {
+			if(empty($args[0])) {
+				$sender->sendMessage ("Please enter a valid player name.");
+				return true;
+			}
 			$playerName = $args [0];
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
@@ -119,7 +135,15 @@ class ccCommand {
 		}
 		
 		// sets nick for player
-		if ((strtolower ( $command->getName () ) == "setnick") && isset ( $args [0] ) && isset ( $args [1] )) {
+		if (strtolower ( $command->getName () ) == "setnick") {
+			if(empty($args[0])) {
+				$sender->sendMessage ("Please enter a valid player name.");
+				return true;
+			}
+			if(empty($args[1])) {
+				$sender->sendMessage ("Please enter a valid nick.");
+				return true;
+			}
 			$playerName = $args [0];
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
@@ -135,7 +159,15 @@ class ccCommand {
 			return;
 		}
 		// sets nick for player
-		if ((strtolower ( $command->getName () ) == "delnick") && isset ( $args [0] ) && isset ( $args [1] )) {
+		if (strtolower ( $command->getName () ) == "delnick") {
+			if(empty($args[0])) {
+				$sender->sendMessage ("Please enter a valid player name.");
+				return true;
+			}
+			if(empty($args[1])) {
+				$sender->sendMessage ("Please enter a valid prefix.");
+				return true;
+			}
 			$playerName = $args [0];
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
 			if ($p == null) {
@@ -153,7 +185,11 @@ class ccCommand {
 		}
 		
 		// mute player from chat
-		if ((strtolower ( $command->getName () ) == "mute") && isset ( $args [0] )) {
+		if (strtolower ( $command->getName () ) == "mute") {
+			if(empty($args[0])) {
+				$sender->sendMessage ("Please enter a valid player.");
+				return true;
+			}
 			$playerName = $args [0];
 			// check if the player exist
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
@@ -168,7 +204,11 @@ class ccCommand {
 			return;
 		}
 		// - unmute player from chat
-		if ((strtolower ( $command->getName () ) == "unmute") && isset ( $args [0] )) {
+		if (strtolower ( $command->getName () ) == "unmute") {
+			if(empty($args[0])) {
+				$sender->sendMessage ("Please enter a valid player.");
+				return true;
+			}
 			$playerName = $args [0];
 			// check if the player exist
 			$p = $sender->getServer ()->getPlayerExact ( $playerName );
