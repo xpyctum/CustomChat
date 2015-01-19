@@ -33,8 +33,12 @@ class ccListener implements Listener {
 		$this->pureperms = $this->pgin->getServer()->getPluginManager()->getPlugin("PurePerms");
 		// Use EconomyJob by Onebone	   
 		$this->economyjob = $this->pgin->getServer()->getPluginManager()->getPlugin("EconomyJob");
+		// Use MassiveEconomy
+		$this->massive = $this->pgin->getServer()->getPluginManager()->getPlugin("MassiveEconomy");
 	}
-
+	// ===========
+	//	Player Chat
+	// ===========
 	public function onPlayerChat(PlayerChatEvent $event) {
 		$allowChat = $this->pgin->getConfig ()->get ( "disablechat" );
 		// $this->log ( "allowChat ".$allowChat);
@@ -60,47 +64,59 @@ class ccListener implements Listener {
 			return;
 		}
 	}
+	// ===========
+	//	Player Join
+	// ===========
 	public function onPlayerJoin(PlayerJoinEvent $event) {
 	    $message = $this->pgin->getConfig()->get("CustomJoin");
+		$player = $event->getPlayer();
         if($message === false){                                                                                                                                                                    
             $event->setJoinMessage(null);                                                                                                                                                       
         }                                                                                                                                                                                                     
         $message = str_replace("@Player", $event->getPlayer()->getDisplayName(), $message);                                                                      
-        $event->setJoinMessage($message);
-			
-		if($this->factionspro == true && $this->factionspro->isInFaction($player->getName())) {
-			$getUserFaction = $this->factionspro->getPlayerFaction($player->getName()); 
-			$message = str_replace ( "{@faction}", $getUserFaction, $message );
+		
+		if($this->factionspro == true && $this->factionspro->isInFaction(strtolower($player->getName()))) {
+			$getUserFaction = $this->factionspro->getPlayerFaction(strtolower($player->getName())); 
+			$message = str_replace ( "@Faction", $getUserFaction, $message );
 		}else{
 			$nofac = $this->pgin->getConfig ()->get ( "if-player-has-no-faction");
 			$message = str_replace ( "@Faction", $nofac, $message );
 		}		
-		     $player = $event->getPlayer ();
-		     $this->pgin->formatterPlayerDisplayName ( $player );
+		$this->pgin->formatterPlayerDisplayName ( $player );
+		$event->setJoinMessage($message);
 	}
+	// ===========
+	//	Player Quit
+	// ===========
     public function onPlayerQuit(PlayerQuitEvent $event){
         $message = $this->pgin->getConfig()->get("CustomLeave"); 
+		$player = $event->getPlayer();
         if($message === false){
             $event->setQuitMessage(null);
         }
         $message = str_replace("@Player", $event->getPlayer()->getDisplayName(), $message);
-        $event->setQuitMessage($message);
 		
-		if($this->factionspro == true && $this->factionspro->isInFaction($player->getName())) {
-			$getUserFaction = $this->factionspro->getPlayerFaction($player->getName()); 
+		if($this->factionspro == true && $this->factionspro->isInFaction(strtolower($player->getName()))) {
+			$getUserFaction = $this->factionspro->getPlayerFaction(strtolower($player->getName())); 
 			$message = str_replace ( "@Faction", $getUserFaction, $message );
 		}else{
 			$nofac = $this->pgin->getConfig ()->get ( "if-player-has-no-faction");
 			$message = str_replace ( "@Faction", $nofac, $message );
 		}
+		$event->setQuitMessage($message);
 	}
+	// ===========
+	//	Player Chat Format
+	// ===========
 	public function getFormattedMessage(Player $player, $message) {
 		$format = $this->pgin->getConfig ()->get ( "chat-format" );
 		// "chat-format: '{WORLD_NAME}:[{PREFIX}]<{DISPLAY_NAME}> ({Kills}) {MESSAGE}'";		
 		$format = str_replace ( "{WORLD_NAME}", $player->getLevel ()->getName (), $format );
-		
-		$format = str_replace ( "{Money}", MassiveEconomyAPI::getInstance()->getMoney($player->getName()), $format); 
-		
+		if($this->massive) {
+			$format = str_replace ( "{Money}", MassiveEconomyAPI::getInstance()->getMoney($player->getName()), $format); 
+		}else{
+			$format = str_replace ( "{Money}", "ERROR", $format);
+		}
 		
 		if($this->factionspro == true && $this->factionspro->isInFaction($player->getName())) {
 			$getUserFaction = $this->factionspro->getPlayerFaction($player->getName()); 
