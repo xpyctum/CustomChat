@@ -3,8 +3,8 @@
  [X] Fix /setnick and /delnick
  [X] Support ChatChannel
  [ ] Support Economy/... / Job for economy
- [ ] Support MassiveEconomy
- [ ] CustomJoin For CustomChat Implented 
+ [X] Support MassiveEconomy
+ [X] CustomJoin For CustomChat Implented 
  [ ] Support Level Xp
  [X] CustomColor Support
  [ ] Support KillChat
