@@ -35,6 +35,8 @@ class ccListener implements Listener {
 		$this->economyjob = $this->pgin->getServer()->getPluginManager()->getPlugin("EconomyJob");
 		// Use MassiveEconomy
 		$this->massive = $this->pgin->getServer()->getPluginManager()->getPlugin("MassiveEconomy");
+		// use KillChat\KillChat
+		$this->killchat = $this->pgin->getServer()->getPluginManager()->getPlugin("KillChat");
 	}
 	// ===========
 	//	Player Chat
@@ -138,6 +140,17 @@ class ccListener implements Listener {
             } else {
                 return false;
                 }
+				
+		if($this->killchat) {
+			$format = str_replace ( "{Kills}", KillChat::getInstance()->getKills($player->getName()), $format); 
+		}else{
+			$format = str_replace ( "{Kills}", "ERROR", $format);
+		}
+		if($this->killchat) {
+			$format = str_replace ( "{Deaths}", KillChat::getInstance()->getDeaths($player->getName()), $format); 
+		}else{
+			$format = str_replace ( "{Deaths}", "ERROR", $format);
+		}
          
        
 		

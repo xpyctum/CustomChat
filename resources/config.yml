@@ -5,7 +5,7 @@ if-player-has-no-job: unemployed
 enable-formatter: true
 disablechat: false
 default-player-prefix: Default
-CustomChat options: '{Kills} | {Deaths} |  [{Money}$]'
+CustomChat options: '{Kills} | {Deaths} |  [{Money}$] | [{FACTION}]'
 CustomJoin: '@Player joined the server ! Iksaku is Awesome'
 CustomLeave: '@Player leave the server ! Iksaku is Awesome'
 ...

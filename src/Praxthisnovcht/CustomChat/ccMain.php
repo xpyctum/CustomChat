@@ -100,11 +100,9 @@ class ccMain extends PluginBase implements CommandExecutor {
 			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With PurePerms !" );
 		}
 		if(!$this->getServer()->getPluginManager()->getPlugin("KillChat") == false) {
-			$kc_kills = Server::getInstance()->getPluginManager()->getPlugin("KillChat")->getKills("Player Name");		
-			$kc_deaths = Server::getInstance()->getPluginManager()->getPlugin("KillChat")->getDeaths("Player Name");
-			// KillChat Addon
-			$this->log ( TextFormat::YELLOW . "- CustomChat - Loaded With KillChat [Addon For Only CustomChat] !" );
-		} 
+			$kl_chat = Server::getInstance()->getPluginManager()->getPlugin("KillChat");
+			$this->log ( TextFormat::YELLOW . "- CustomChat - Loaded With KillChat !" );
+		}
 		if(!$this->getServer()->getPluginManager()->getPlugin("MassiveEconomy") == false) {
 			$me_money = Server::getInstance()->getPluginManager()->getPlugin("MassiveEconomy");
 			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With MassiveEconomy !" );
