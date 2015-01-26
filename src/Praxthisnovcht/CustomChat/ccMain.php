@@ -60,11 +60,7 @@ use Praxthisnovcht\KillChat\KillChat;      ##
 class ccMain extends PluginBase implements CommandExecutor {
 
 	public $pos_display_flag = 0;
-	private $factionspro;
-	private $pureperms;
-	
-	private $economyjob;
-	
+	private $factionspro, $pureperms, $economyjob, $playerstats;
 	
 	public $swCommand;
 	
@@ -112,6 +108,11 @@ class ccMain extends PluginBase implements CommandExecutor {
 			$this->economyjob = $this->getServer()->getPluginManager()->getPlugin("EconomyJob");
 			$this->log ( TextFormat::GREEN . "- CustomChat - Loaded With EconomyJob!" );
 		}
+		if(!$this->getServer()->getPluginManager()->getPlugin("PlayerStats") == false) {
+			$this->playerstats = $this->getServer()->getPluginManager()->getPlugin("PlayerStats");
+			$this->log ( TextFormat::GREEN . "- PlayerStats - Loaded With PlayerStats!" );
+		}
+
 		$this->getServer()->getPluginManager()->registerEvents(new ccListener($this), $this);
 		$this->log ( TextFormat::GREEN . "- CustomChat - Enabled!" );
 		$this->loadConfig ();
