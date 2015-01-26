@@ -29,6 +29,10 @@ use pocketmine\network\protocol\Info;
 use pocketmine\network\protocol\LoginPacket;
 
 /**
+ *  + xpyctum :)
+ */
+
+/**
  * Command // CustomChat 1.3.1 Release
  *
  */
@@ -54,88 +58,91 @@ class ccCommand {
 	 * @return boolean
 	 */
 	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
+	$cmd = strtolower($command->getName());
+	switch($cmd){
 		// disable chat for all players
-		if ((strtolower ( $command->getName () ) == "disablechat")) {
-			$this->pgin->getConfig ()->set ( "disablechat", true ); // config.yml
-			$this->pgin->getConfig ()->save ();
-			$sender->sendMessage ("§4" .TextFormat::RED . "disable chat for all players" );
-			$this->log ( "disable chat for all players" );
-			return;
+		case "disablechat": {
+			$this->pgin->getConfig()->set ( "disablechat", true ); // config.yml
+			$this->pgin->getConfig()->save();
+			$sender->sendMessage("§4" .TextFormat::RED . " Disabled chat for all players" );
+			$this->log( "disable chat for all players" );
+			break;
 		}
 		// enable chat for all players
-		if ((strtolower ( $command->getName () ) == "enablechat")) {
-			$this->pgin->getConfig ()->set ( "disablechat", false ); // config.yml
-			$this->pgin->getConfig ()->save ();
-			$sender->sendMessage ("§a" .TextFormat::GREEN . "enable chat for all players" );
-			$this->log ( "enable chat for all players" );
-			return;
+		case "enablechat": {
+			$this->pgin->getConfig()->set("disablechat",false); // config.yml
+			$this->pgin->getConfig()->save();
+			$sender->sendMessage("§a" .TextFormat::GREEN . " Enabled chat for all players" );
+			$this->log ("enable chat for all players");
+			break;
 		}
-		
 		// sets default prefix for new players
-		if (strtolower ( $command->getName () ) == "defprefix") {
+		case "defprefix": {
 			if(empty($args[0])) {
-				$sender->sendMessage ("Please enter a valid prefix.");
+				$sender->sendMessage("Please enter a valid prefix.");
 				return true;
+			}else{
+				$playerName = $args[0];
+				$p = $sender->getServer()->getPlayerExact( $playerName );
+				if ($p == null) {
+					$sender->sendMessage("§4" .TextFormat::RED . "player " . $playerName . " is not online!" );
+					return true;
+				}else{
+					$prefix = $args [1];
+					$this->pgin->getConfig()->set( "default-player-prefix", $prefix );
+					$this->pgin->getConfig()->save();
+					$sender->sendMessage("§a" .TextFormat::GREEN . " all players default prefix set to " . $args [1] );
+				}
 			}
-			$playerName = $args [0];
-			$p = $sender->getServer ()->getPlayerExact ( $playerName );
-			if ($p == null) {
-				$sender->sendMessage ("§4" .TextFormat::RED . "player " . $playerName . " is not online!" );
-				return true;
-			}
-			$prefix = $args [1];
-			$this->pgin->getConfig ()->set ( "default-player-prefix", $prefix );
-			$this->pgin->getConfig ()->save ();
-			$sender->sendMessage ("§a" .TextFormat::GREEN . " all players default prefix set to " . $args [1] );
-			return;
+				break;
 		}
 		
 		// sets prefix for player
-		if (strtolower ( $command->getName () ) == "setprefix") {
+		case "setprefix": {
 			if(empty($args[0])) {
-				$sender->sendMessage ("Please enter a valid player name.");
+				$sender->sendMessage("Please enter a valid player name.");
 				return true;
-			}
-			if(empty($args[1])) {
-				$sender->sendMessage ("Please enter a valid prefix.");
+			}else if(empty($args[1])) {
+				$sender->sendMessage("Please enter a valid prefix.");
 				return true;
+			}else{
+				$playerName = $args[0];
+				$p = $sender->getServer()->getPlayerExact($playerName);
+				if ($p == null) {
+					$sender->sendMessage ("§4" .TextFormat::RED . "player " . $playerName . " is not online!" );
+					return true;
+				}else{
+					$prefix = $args [1];
+					$this->pgin->getConfig()->set( $p->getName().".prefix", $prefix );
+					$this->pgin->getConfig()->save();
+					// $p->setDisplayName($prefix.":".$name);
+					$this->pgin->formatterPlayerDisplayName( $p );
+					$sender->sendMessage ("§a" .TextFormat::GREEN . $p->getName() . " prefix set to " . $args [1] );
+				}
 			}
-			$playerName = $args [0];
-			$p = $sender->getServer ()->getPlayerExact ( $playerName );
-			if ($p == null) {
-				$sender->sendMessage ("§4" .TextFormat::RED . "player " . $playerName . " is not online!" );
-				return true;
-			}
-			$prefix = $args [1];
-			$this->pgin->getConfig ()->set ( $p->getName ().".prefix", $prefix );
-			$this->pgin->getConfig ()->save ();
-			
-			// $p->setDisplayName($prefix.":".$name);
-			$this->pgin->formatterPlayerDisplayName ( $p );
-			$sender->sendMessage ("§a" .TextFormat::GREEN . $p->getName () . " prefix set to " . $args [1] );
-			return;
+			break;
 		}
-		
 		// set player's prefix to default.
-		if (strtolower ( $command->getName () ) == "delprefix") {
+		case "delprefix": {
 			if(empty($args[0])) {
-				$sender->sendMessage ("Please enter a valid player name.");
+				$sender->sendMessage("Please enter a valid player name.");
 				return true;
+			}else{
+				$playerName = $args[0];
+				$p = $sender->getServer()->getPlayerExact($playerName);
+				if ($p == null) {
+					$sender->sendMessage("§4" .TextFormat::RED . "player " . $playerName . " is not online!" );
+					return true;
+				}else{
+					$this->pgin->getConfig()->remove( $p->getName() . ".prefix" );
+					$this->pgin->getConfig()->save();
+					$sender->sendMessage("§a" .TextFormat::RED . $p->getName () . " prefix set to default" );
+				}
 			}
-			$playerName = $args [0];
-			$p = $sender->getServer ()->getPlayerExact ( $playerName );
-			if ($p == null) {
-				$sender->sendMessage ("§4" .TextFormat::RED . "player " . $playerName . " is not online!" );
-				return true;
-			}
-			$this->pgin->getConfig ()->remove ( $p->getName () . ".prefix" );
-			$this->pgin->getConfig ()->save ();
-			$sender->sendMessage ("§a" .TextFormat::RED . $p->getName () . " prefix set to default" );
-			return;
+			break;
 		}
-		
 		// sets nick for player
-		if (strtolower ( $command->getName () ) == "setnick") {
+		case "setnick": {
 			if(empty($args[0])) {
 				$sender->sendMessage ("Please enter a valid player name.");
 				return true;
@@ -156,10 +163,10 @@ class ccCommand {
 			
 			$this->pgin->formatterPlayerDisplayName ( $p );
 			$sender->sendMessage ("§6" .TextFormat::GREEN . $p->getName () . " nick name set to " . $args [1] );
-			return;
+			break;
 		}
 		// sets nick for player
-		if (strtolower ( $command->getName () ) == "delnick") {
+		case "delnick": {
 			if(empty($args[0])) {
 				$sender->sendMessage ("Please enter a valid player name.");
 				return true;
@@ -181,11 +188,10 @@ class ccCommand {
 			
 			$this->pgin->formatterPlayerDisplayName ( $p );
 			$sender->sendMessage ("§6" .TextFormat::GREEN . $p->getName () . " nick removed " );
-			return;
+			break;
 		}
-		
 		// mute player from chat
-		if (strtolower ( $command->getName () ) == "mute") {
+		case "mute": {
 			if(empty($args[0])) {
 				$sender->sendMessage ("Please enter a valid player.");
 				return true;
@@ -201,10 +207,10 @@ class ccCommand {
 			$p->addAttachment ( $this->pgin, $perm, true );
 			$sender->sendMessage ("§a".TextFormat::GREEN . $p->getName () . " chat muted" );
 			// $this->log ( "isPermissionSet " . $p->isPermissionSet ( $perm ) );
-			return;
+			break;
 		}
 		// - unmute player from chat
-		if (strtolower ( $command->getName () ) == "unmute") {
+		case "unmute": {
 			if(empty($args[0])) {
 				$sender->sendMessage ("Please enter a valid player.");
 				return true;
@@ -227,19 +233,20 @@ class ccCommand {
 			}
 			$sender->sendMessage ("§4" .TextFormat::RED . $p->getName () . " already unmuted" );
 			// $this->log ( "isPermissionSet " . $p->isPermissionSet ( $perm ) );
-			return; // next try again
+			break; // next try again
 			
-		}
-	}
-	             // TODO NEXT VERSION
-	
+		}//end case
+	}//end switch
+	}//end eventcmd
+
 	private function hasCommandAccess(CommandSender $sender) {
 		if ($sender->getName () == "CONSOLE") {
 			return true;
 		} elseif ($sender->isOp ()) {
 			return true;
+		}else{
+			return false;
 		}
-		return false;
 	}
 	
 	/**
